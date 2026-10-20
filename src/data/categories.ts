@@ -1,13 +1,13 @@
-import heroApparel from "../assets/images/hero-apparel.webp";
-import heroMugs from "../assets/images/hero-mugs.webp";
-import catBadges from "../assets/images/cat-badges.webp";
-import catCopier from "../assets/images/cat-copier.webp";
-import catFinishing from "../assets/images/cat-finishing.webp";
-import catLaser from "../assets/images/cat-laser.webp";
-import catPress from "../assets/images/cat-press.webp";
-import catPrinting from "../assets/images/cat-printing.webp";
-import featuredKeychains from "../assets/images/featured-keychains.webp";
-import heroEquipment from "../assets/images/hero-equipment.webp";
+import heroApparel from "../assets/images/hero-apparel.jpg";
+import heroMugs from "../assets/images/hero-mugs.jpg";
+import catBadges from "../assets/images/cat-badges.jpg";
+import catCopier from "../assets/images/cat-copier.jpg";
+import catFinishing from "../assets/images/cat-finishing.jpg";
+import catLaser from "../assets/images/cat-laser.jpg";
+import catPress from "../assets/images/cat-press.jpg";
+import catPrinting from "../assets/images/cat-printing.jpg";
+import featuredKeychains from "../assets/images/featured-keychains.jpg";
+import heroEquipment from "../assets/images/hero-equipment.jpg";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
