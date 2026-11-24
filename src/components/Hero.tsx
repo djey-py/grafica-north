@@ -1,87 +1,98 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Gift,
+  MapPin,
+  Printer,
+  Sparkles,
+} from "lucide-react";
 import { IMAGES } from "../data/categories";
 import { MESSAGES } from "../utils/whatsapp";
 import WhatsAppLink from "./WhatsAppLink";
 import Reveal from "./Reveal";
 
+const CAPABILITIES = [
+  { icon: Printer, label: "Impressão" },
+  { icon: Gift, label: "Brindes personalizados" },
+  { icon: BadgeCheck, label: "Equipamentos gráficos" },
+];
+
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden" aria-labelledby="hero-title">
-      {/* Elementos decorativos inspirados na identidade da marca */}
+    <section
+      className="relative isolate overflow-hidden border-b border-white/[0.06]"
+      aria-labelledby="hero-title"
+    >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 -right-32 h-[520px] w-[520px] rounded-full bg-grape/25 blur-[130px]"
+        className="pointer-events-none absolute -top-48 right-[8%] h-[34rem] w-[34rem] rounded-full bg-aqua/[0.12] blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/3 -left-40 h-[420px] w-[420px] rounded-full bg-electric/20 blur-[120px]"
+        className="pointer-events-none absolute -bottom-64 -left-40 h-[34rem] w-[34rem] rounded-full bg-electric/[0.16] blur-[150px]"
       />
 
-      <div className="shell relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
-        {/* Coluna de texto */}
-        <div className="flex flex-col items-start gap-6">
+      <div className="shell relative grid min-h-[min(760px,calc(100svh-78px))] items-center gap-14 py-16 md:py-20 lg:grid-cols-[1fr_0.95fr] lg:gap-12 lg:py-20 xl:gap-20">
+        <div className="relative z-10 flex flex-col items-start">
           <Reveal>
-            <span className="eyebrow rounded-full border border-line bg-ink-soft/80 px-3.5 py-1.5 backdrop-blur">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-aqua/20 bg-aqua/[0.07] px-4 py-2 text-[0.6875rem] font-bold tracking-[0.15em] text-aqua uppercase backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              Serviços gráficos, impressão &amp; marketing
+              Soluções gráficas em Luanda
             </span>
           </Reveal>
 
-          <Reveal delay={80}>
+          <Reveal delay={70}>
             <h1
               id="hero-title"
-              className="text-[clamp(2.3rem,6.2vw,4rem)] leading-[1.02] font-extrabold text-white"
+              className="mt-7 max-w-[13ch] text-[clamp(2.8rem,7vw,5.65rem)] leading-[0.98] font-extrabold tracking-[-0.055em] text-white"
             >
-              Serviços gráficos e impressão para dar vida à sua{" "}
-              <span className="gradient-text">marca</span>.
+              A sua marca merece ser{" "}
+              <span className="gradient-text">vista.</span>
             </h1>
           </Reveal>
 
-          <Reveal delay={140}>
-            <p className="max-w-xl text-[1rem] leading-relaxed text-muted md:text-[1.0625rem]">
-              A Gráfica Noreth — Prestação de Serviços & Comércio, Lda. realiza trabalhos
-              gráficos, impressão e personalização, e comercializa materiais gráficos,
-              consumíveis e equipamentos. Conte connosco para cartões de visita, vestuário,
-              brindes e soluções para comunicar a sua marca.
+          <Reveal delay={130}>
+            <p className="mt-6 max-w-xl text-base leading-[1.8] text-muted md:text-lg">
+              Impressão, produção gráfica, brindes personalizados e equipamentos
+              profissionais — soluções para fazer a sua marca chegar mais longe.
             </p>
           </Reveal>
 
-          <Reveal delay={200} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-            <Link to="/equipamentos" className="btn btn-primary">
-              Explorar o catálogo
-              <ArrowRight className="h-[1.1em] w-[1.1em]" aria-hidden="true" />
-            </Link>
-            <WhatsAppLink message={MESSAGES.geral} variant="ghost">
-              Solicitar orçamento pelo WhatsApp
+          <Reveal delay={190} className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+            <WhatsAppLink message={MESSAGES.geral} size="lg">
+              Pedir orçamento
             </WhatsAppLink>
+            <Link to="/equipamentos" className="btn btn-ghost min-h-[54px] px-6 text-base">
+              Explorar o catálogo
+              <ArrowRight className="h-[1.05em] w-[1.05em]" aria-hidden="true" />
+            </Link>
           </Reveal>
 
-          <Reveal delay={260}>
-            <p className="flex items-center gap-2.5 text-[0.875rem] font-medium text-muted">
-              <span
-                aria-hidden="true"
-                className="h-px w-8 bg-gradient-to-r from-aqua to-transparent"
-              />
-              Serviços gráficos • materiais • impressão • personalização
-            </p>
+          <Reveal delay={250} className="mt-10 w-full max-w-xl">
+            <div className="flex flex-wrap gap-x-5 gap-y-3 border-t border-white/10 pt-5">
+              {CAPABILITIES.map(({ icon: Icon, label }) => (
+                <span key={label} className="inline-flex items-center gap-2 text-xs font-semibold text-white/75 sm:text-sm">
+                  <Icon className="h-4 w-4 text-aqua" aria-hidden="true" />
+                  {label}
+                </span>
+              ))}
+            </div>
           </Reveal>
         </div>
 
-        {/* Coluna visual — composição editorial */}
-        <Reveal delay={160} className="relative">
-          <div className="relative mx-auto max-w-[520px] lg:max-w-none">
-            {/* Moldura técnica */}
+        <Reveal delay={120} className="relative mx-auto w-full max-w-[590px] lg:ml-auto lg:max-w-none">
+          <div className="relative mx-auto w-full max-w-[550px] pb-8 pl-5 sm:pl-10 lg:pl-0">
             <div
               aria-hidden="true"
-              className="absolute -top-4 -left-4 h-24 w-24 rounded-tl-2xl border-t border-l border-aqua/40"
+              className="absolute top-[8%] right-[8%] aspect-square w-[82%] rounded-full border border-aqua/[0.13]"
             />
             <div
               aria-hidden="true"
-              className="absolute -right-4 -bottom-4 h-24 w-24 rounded-br-2xl border-r border-b border-aqua/40"
+              className="absolute top-[14%] right-[14%] aspect-square w-[70%] rounded-full border border-white/[0.06]"
             />
 
-            <figure className="relative overflow-hidden rounded-3xl border border-line shadow-[0_40px_90px_-40px_rgba(8,103,232,0.7)]">
+            <figure className="relative ml-auto w-[88%] overflow-hidden rounded-[2rem] border border-white/15 bg-panel shadow-[0_38px_100px_-42px_rgba(8,103,232,0.72)] sm:rounded-[2.5rem]">
               <img
                 src="/images/storefront-noreth.webp"
                 alt="Fachada do Centro de Impressão & Marketing da Gráfica Noreth em Luanda"
@@ -89,65 +100,56 @@ export default function Hero() {
                 height={1080}
                 fetchPriority="high"
                 decoding="async"
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-[1.15] w-full object-cover"
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/5 to-transparent"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
-                <span className="text-[0.8125rem] font-bold text-white">
-                  Centro de Impressão &amp; Marketing
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-6">
+                <span>
+                  <span className="block text-[0.6rem] font-bold tracking-[0.2em] text-aqua uppercase">
+                    Gráfica Noreth
+                  </span>
+                  <span className="mt-1 block text-sm font-bold text-white sm:text-base">
+                    Da ideia à produção
+                  </span>
                 </span>
-                <span className="rounded-full border border-white/12 bg-ink/70 px-2.5 py-1 text-[0.625rem] font-semibold tracking-[0.1em] text-muted uppercase backdrop-blur">
-                  A nossa loja
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/20 bg-ink/35 text-white backdrop-blur-md">
+                  <ArrowRight className="h-4 w-4 -rotate-45" aria-hidden="true" />
                 </span>
               </figcaption>
             </figure>
 
-            {/* Cartões secundários */}
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <figure className="float-slow relative overflow-hidden rounded-2xl border border-line">
-                <img
-                  src={IMAGES.heroMugs}
-                  alt="Canecas personalizadas com padrões geométricos em azul e ciano"
-                  loading="lazy"
-                  decoding="async"
-                  width={1000}
-                  height={667}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-                <figcaption className="sr-only">
-                  Canecas e chávenas personalizadas por sublimação.
-                </figcaption>
-              </figure>
-              <figure className="relative mt-6 overflow-hidden rounded-2xl border border-line">
-                <img
-                  src={IMAGES.heroApparel}
-                  alt="T-shirts, polos e bonés prontos para personalização"
-                  loading="lazy"
-                  decoding="async"
-                  width={1000}
-                  height={1500}
-                  className="aspect-[4/3] w-full object-cover object-top"
-                />
-                <figcaption className="sr-only">
-                  Vestuário pronto para personalização.
-                </figcaption>
-              </figure>
-            </div>
+            <figure className="absolute top-[19%] left-0 w-[37%] overflow-hidden rounded-2xl border border-white/20 bg-panel p-1.5 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.9)] sm:rounded-3xl sm:p-2">
+              <img
+                src={IMAGES.heroMugs}
+                alt="Canecas personalizadas com padrões geométricos em azul e ciano"
+                loading="lazy"
+                decoding="async"
+                width={1000}
+                height={667}
+                className="aspect-square w-full rounded-xl object-cover sm:rounded-2xl"
+              />
+              <figcaption className="sr-only">Canecas personalizadas por sublimação.</figcaption>
+            </figure>
 
-            {/* Detalhe gráfico */}
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-8 -left-6 hidden rounded-2xl border border-line bg-panel/90 p-3.5 backdrop-blur md:block"
-            >
-              <span className="block text-[0.5625rem] font-bold tracking-[0.2em] text-aqua uppercase">
-                Noreth
-              </span>
-              <span className="mt-1 block text-[0.6875rem] text-muted">
-                Ideias em realidade
-              </span>
+            <figure className="absolute right-0 bottom-[13%] w-[42%] overflow-hidden rounded-2xl border border-white/20 bg-panel p-1.5 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.9)] sm:rounded-3xl sm:p-2">
+              <img
+                src={IMAGES.heroApparel}
+                alt="Vestuário preparado para personalização, incluindo t-shirts, polos e bonés"
+                loading="lazy"
+                decoding="async"
+                width={1000}
+                height={1500}
+                className="aspect-[1.18] w-full rounded-xl object-cover object-center sm:rounded-2xl"
+              />
+              <figcaption className="sr-only">Vestuário pronto para personalização.</figcaption>
+            </figure>
+
+            <div className="absolute right-0 top-0 inline-flex -translate-y-1/3 items-center gap-2 rounded-full border border-white/15 bg-ink/80 px-3.5 py-2.5 text-[0.7rem] font-semibold text-white shadow-xl backdrop-blur-xl sm:right-2 sm:px-4 sm:text-xs">
+              <MapPin className="h-3.5 w-3.5 text-aqua" aria-hidden="true" />
+              Luanda · Angola
             </div>
           </div>
         </Reveal>
