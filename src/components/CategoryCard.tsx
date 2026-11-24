@@ -93,6 +93,8 @@ export default function CategoryCard({ category, onSelect, active = false }: Cat
 function Media({ category }: { category: Category }) {
   const Icon = category.icon;
   const isPromotionalPoster = category.image?.startsWith("equipment") ?? false;
+  const isRealWorkSample = category.image?.startsWith("workSample") ?? false;
+  const isProvidedImage = isPromotionalPoster || isRealWorkSample;
   return (
     <>
       {category.image ? (
@@ -101,20 +103,22 @@ function Media({ category }: { category: Category }) {
           alt={
             isPromotionalPoster
               ? `${category.name} — cartaz promocional fornecido pela Gráfica Noreth`
-              : `${category.name} — imagem ilustrativa`
+              : isRealWorkSample
+                ? `${category.name} — fotografia de trabalho realizado pela Gráfica Noreth`
+                : `${category.name} — imagem ilustrativa`
           }
           loading="lazy"
           decoding="async"
           width={1000}
           height={1000}
-          className={`h-full w-full ${isPromotionalPoster ? "object-contain" : "object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"}`}
+          className={`h-full w-full ${isPromotionalPoster ? "object-contain" : `object-cover ${isRealWorkSample ? "" : "transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"}`}`}
         />
       ) : (
         <span className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0d1730] via-[#0b1224] to-[#101a3a]">
           <Icon className="h-12 w-12 text-aqua/70" aria-hidden="true" />
         </span>
       )}
-      {!isPromotionalPoster ? (
+      {!isProvidedImage ? (
         <>
           <span
             aria-hidden="true"

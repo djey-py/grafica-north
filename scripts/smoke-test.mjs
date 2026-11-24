@@ -76,6 +76,9 @@ async function main() {
     if (!document.querySelector('img[src="/images/storefront-noreth.webp"]')) {
       throw new Error("A fotografia real da entrada da Gráfica Noreth não foi encontrada na homepage.");
     }
+    if (document.querySelectorAll('button[aria-label^="Ampliar imagem:"]').length < 22) {
+      throw new Error("A galeria da homepage não apresenta os novos exemplos de trabalhos reais.");
+    }
   const results = [];
 
   for (const route of ROUTES) {
@@ -85,6 +88,15 @@ async function main() {
     if (!link) throw new Error(`Nav link nao encontrado para ${route}`);
     link.click();
     await wait(350);
+
+    if (route === "/personalizados") {
+      const realWorkPhotos = document.querySelectorAll(
+        'article img[alt*="fotografia de trabalho realizado"]',
+      );
+      if (realWorkPhotos.length < 6) {
+        throw new Error("As fotografias reais de vestuário e brindes não aparecem no catálogo.");
+      }
+    }
 
     if (route === "/equipamentos") {
       const promotionalPosters = document.querySelectorAll(

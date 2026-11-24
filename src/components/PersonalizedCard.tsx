@@ -26,6 +26,8 @@ export default function PersonalizedCard({
   gradient,
   featured = false,
 }: PersonalizedCardProps) {
+  const isRealWorkSample = image?.startsWith("workSample") || image === "featuredKeychains";
+
   return (
     <article
       id={id}
@@ -38,12 +40,16 @@ export default function PersonalizedCard({
         {image ? (
           <img
             src={IMAGES[image]}
-            alt={`${name} personalizados — fotografia ilustrativa`}
+            alt={
+              isRealWorkSample
+                ? `${name} personalizados — fotografia de trabalho realizado pela Gráfica Noreth`
+                : `${name} personalizados — fotografia ilustrativa`
+            }
             loading="lazy"
             decoding="async"
             width={1000}
             height={800}
-            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+            className={`h-full w-full object-cover ${isRealWorkSample ? "" : "transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"}`}
           />
         ) : (
           <div
@@ -64,16 +70,18 @@ export default function PersonalizedCard({
             </span>
           </div>
         )}
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"
-        />
+        {!isRealWorkSample ? (
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent"
+          />
+        ) : null}
         {featured ? (
           <span className="absolute top-3 right-3 rounded-full bg-gradient-to-r from-electric to-aqua px-2.5 py-1 text-[0.625rem] font-bold tracking-[0.12em] text-white uppercase">
             Destaque
           </span>
         ) : null}
-        {image ? <span className="img-tag">Imagem ilustrativa</span> : null}
+        {image && !isRealWorkSample ? <span className="img-tag">Imagem ilustrativa</span> : null}
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">

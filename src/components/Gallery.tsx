@@ -67,7 +67,7 @@ export default function Gallery() {
             <button
               type="button"
               onClick={() => setActive(index)}
-              className="group relative block w-full overflow-hidden rounded-2xl border border-line bg-panel text-left"
+              className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-line bg-panel text-left"
               aria-label={`Ampliar imagem: ${item.title}`}
             >
               <span className="block aspect-[4/3] overflow-hidden">
@@ -78,14 +78,22 @@ export default function Gallery() {
                   decoding="async"
                   width={1000}
                   height={750}
-                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
+                  className={`h-full w-full object-cover ${item.image.startsWith("workSample") ? "" : "transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"}`}
                 />
               </span>
+              {item.image.startsWith("workSample") ? null : (
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-85"
+                />
+              )}
               <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-85"
-              />
-              <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3.5">
+                className={
+                  item.image.startsWith("workSample")
+                    ? "flex flex-1 flex-col gap-1 p-3.5"
+                    : "absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3.5"
+                }
+              >
                 <span className="text-[0.8125rem] font-bold text-white">{item.title}</span>
                 <span className="line-clamp-2 text-[0.6875rem] leading-snug text-muted">
                   {item.caption}

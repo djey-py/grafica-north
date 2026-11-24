@@ -1,4 +1,3 @@
-import heroApparel from "../assets/images/hero-apparel.webp";
 import heroMugs from "../assets/images/hero-mugs.webp";
 import catBadges from "../assets/images/cat-badges.webp";
 import catCopier from "../assets/images/cat-copier.webp";
@@ -6,7 +5,20 @@ import catFinishing from "../assets/images/cat-finishing.webp";
 import catLaser from "../assets/images/cat-laser.webp";
 import catPress from "../assets/images/cat-press.webp";
 import catPrinting from "../assets/images/cat-printing.webp";
-import featuredKeychains from "../assets/images/featured-keychains.webp";
+import featuredKeychains from "../assets/images/work-samples/keychains-driving-school.webp";
+import workSampleCapAsagropec from "../assets/images/work-samples/cap-asagropec.webp";
+import workSampleCapsAsagropecGroup from "../assets/images/work-samples/caps-asagropec-group.webp";
+import workSampleCapsAsagropecLot from "../assets/images/work-samples/caps-asagropec-lot.webp";
+import workSampleKeychainsCyberRed from "../assets/images/work-samples/keychains-cyber-red.webp";
+import workSampleKeychainsCyberWhite from "../assets/images/work-samples/keychains-cyber-white.webp";
+import workSamplePoloDreamhomeBack from "../assets/images/work-samples/polo-dreamhome-back.webp";
+import workSamplePoloDreamhomeFront from "../assets/images/work-samples/polo-dreamhome-front.webp";
+import workSamplePoloGeoverde from "../assets/images/work-samples/polo-geoverde.webp";
+import workSamplePoloInside from "../assets/images/work-samples/polo-inside-interiores.webp";
+import workSampleTshirtsAsagropec from "../assets/images/work-samples/tshirts-asagropec.webp";
+import workSampleVestAngola from "../assets/images/work-samples/vest-angola.webp";
+import workSampleVestBgs from "../assets/images/work-samples/vest-reflective-bgs.webp";
+import workSampleVestMultibolsos from "../assets/images/work-samples/vest-multibolsos-angola.webp";
 import heroEquipment from "../assets/images/hero-equipment.webp";
 import equipmentEpson from "../assets/images/equipment/epson-printers.webp";
 import equipmentFlashStamp from "../assets/images/equipment/flash-stamp.webp";
@@ -30,9 +42,9 @@ import {
 
 /**
  * Inventário visual do website.
- * As imagens de equipamento fornecidas pela Gráfica Noreth são cartazes
- * promocionais e são identificadas como tal na interface. As demais imagens
- * continuam ilustrativas até serem substituídas por materiais correspondentes.
+ * Inclui cartazes de equipamento fornecidos pela Gráfica Noreth, exemplos reais
+ * de trabalhos personalizados e imagens ilustrativas para categorias ainda sem
+ * fotografia correspondente.
  */
 export const IMAGES = {
   heroEquipment,
@@ -44,8 +56,21 @@ export const IMAGES = {
   equipmentPressFlat38,
   equipmentPress8in1,
   equipmentUvDtf,
+  workSampleCapAsagropec,
+  workSampleCapsAsagropecGroup,
+  workSampleCapsAsagropecLot,
+  workSampleKeychainsDrivingSchool: featuredKeychains,
+  workSampleKeychainsCyberRed,
+  workSampleKeychainsCyberWhite,
+  workSamplePoloDreamhomeBack,
+  workSamplePoloDreamhomeFront,
+  workSamplePoloGeoverde,
+  workSamplePoloInside,
+  workSampleTshirtsAsagropec,
+  workSampleVestAngola,
+  workSampleVestBgs,
+  workSampleVestMultibolsos,
   heroMugs,
-  heroApparel,
   catPrinting,
   catPress,
   catLaser,
@@ -127,7 +152,7 @@ export const CATEGORIES: Category[] = [
     short: "Personalização",
     description:
       "Equipamentos para personalização de vestuário, brindes e materiais publicitários.",
-    image: "equipmentUvDtf",
+    image: "workSampleTshirtsAsagropec",
     icon: Gift,
   },
   {
