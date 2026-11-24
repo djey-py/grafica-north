@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Layers, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import Hero from "../components/Hero";
+import ChristmasSection from "../components/ChristmasSection";
 import ServicesOverview from "../components/ServicesOverview";
 import SectionHeading from "../components/SectionHeading";
 import CategoryCard from "../components/CategoryCard";
@@ -48,6 +49,7 @@ export default function Home() {
     <>
       <Hero />
       <ServicesOverview />
+      <ChristmasSection />
 
       {/* Categorias */}
       <section id="categorias" className="relative py-20 md:py-28" aria-labelledby="categorias-title">

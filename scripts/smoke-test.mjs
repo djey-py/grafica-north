@@ -79,6 +79,19 @@ async function main() {
     if (document.querySelectorAll('button[aria-label^="Ampliar imagem:"]').length < 22) {
       throw new Error("A galeria da homepage não apresenta os novos exemplos de trabalhos reais.");
     }
+    const christmasSection = document.querySelector("#surpresa-de-natal");
+    if (!christmasSection || christmasSection.getAttribute("data-release-at") !== "2027-12-01T00:00:00+01:00") {
+      throw new Error("A secção de Natal ou a data de abertura não está configurada corretamente.");
+    }
+    const christmasContent = christmasSection.querySelector("[data-christmas-content]");
+    const christmasPosters = christmasSection.querySelectorAll('img[src^="/images/natal/"]');
+    if (Date.now() < Date.parse("2027-11-30T23:00:00.000Z")) {
+      if (christmasContent || christmasPosters.length || !christmasSection.textContent.includes("A surpresa abre em")) {
+        throw new Error("A campanha de Natal deve mostrar apenas a contagem decrescente antes da data.");
+      }
+    } else if (!christmasContent || christmasPosters.length !== 20) {
+      throw new Error("A campanha de Natal não revelou todos os cartazes após a data de abertura.");
+    }
   const results = [];
 
   for (const route of ROUTES) {
@@ -194,6 +207,14 @@ async function main() {
       }
       if (!staticHtml.includes('"logo": "https://grafica-north.vercel.app/logo-grafica-noreth.png"')) {
         throw new Error("Os dados estruturados não apontam para o logótipo oficial.");
+      }
+      for (let index = 1; index <= 20; index += 1) {
+        const poster = await readFile(
+          new URL(`../dist/images/natal/natal-${String(index).padStart(2, "0")}.webp`, import.meta.url),
+        );
+        if (poster.length < 50_000) {
+          throw new Error(`Cartaz de Natal ${index} em falta ou incompleto no build.`);
+        }
       }
     }
   }
