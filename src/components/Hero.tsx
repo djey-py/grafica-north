@@ -114,7 +114,7 @@ export default function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute -top-48 left-[12%] h-[32rem] w-[32rem] rounded-full bg-electric/[0.16] blur-[150px]" />
       <div aria-hidden="true" className="pointer-events-none absolute top-[20%] -right-48 h-[34rem] w-[34rem] rounded-full bg-aqua/[0.1] blur-[160px]" />
 
-      <div className="shell relative py-8 sm:py-10 lg:py-14">
+      <div className="shell hero-fullscreen-inner relative">
         <div className="hero-swiper-shell overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#080f20] shadow-[0_36px_110px_-48px_rgba(8,103,232,0.62)] sm:rounded-[1.8rem] lg:rounded-[2.1rem]">
           <Swiper
             modules={[Autoplay, Keyboard, A11y]}

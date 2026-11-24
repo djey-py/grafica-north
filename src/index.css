@@ -1175,3 +1175,173 @@
     transition-duration: 1ms;
   }
 }
+
+/* Full-viewport home hero: keep the existing Swiper, give its content the whole stage. */
+.hero-slider-section {
+  --hero-header-height: 78px;
+  display: flex;
+  min-height: max(540px, calc(100svh - var(--hero-header-height)));
+  align-items: stretch;
+  padding: 0;
+  background:
+    radial-gradient(ellipse at 75% 35%, rgba(8, 103, 232, 0.13), transparent 42%),
+    linear-gradient(115deg, #060b18 0%, #080f20 58%, #07101c 100%);
+}
+
+.hero-slider-section > .shell.hero-fullscreen-inner {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  min-height: inherit;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+}
+
+.hero-swiper-shell {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  border: 0;
+  border-radius: 0;
+  background: rgba(5, 9, 20, 0.48);
+  box-shadow: none;
+}
+
+.hero-swiper,
+.hero-swiper .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.hero-swiper .swiper-slide {
+  height: auto;
+}
+
+.hero-slide {
+  min-height: max(480px, calc(100svh - var(--hero-header-height) - 68px));
+  height: 100%;
+  grid-template-columns: minmax(340px, 0.72fr) minmax(0, 1.28fr);
+}
+
+.hero-slide-copy {
+  padding-inline: clamp(2rem, 5vw, 6.5rem);
+  background:
+    radial-gradient(ellipse at 0% 45%, rgba(22, 119, 255, 0.13), transparent 70%),
+    linear-gradient(110deg, rgba(5, 9, 20, 0.98), rgba(7, 14, 29, 0.92));
+}
+
+.hero-slide-copy h1 {
+  max-width: 11ch;
+  font-size: clamp(2.7rem, 5.5vw, 5.7rem);
+  line-height: 0.98;
+}
+
+.hero-slide-copy > p {
+  max-width: 32rem;
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+}
+
+.hero-slide-visual {
+  min-height: 0;
+  height: 100%;
+  background: #07101d;
+}
+
+.hero-slide-image {
+  padding: clamp(1rem, 3vw, 3.5rem);
+}
+
+.hero-slide-visual > div[aria-hidden="true"] {
+  background: linear-gradient(90deg, rgba(5, 9, 20, 0.18), transparent 22%),
+    linear-gradient(0deg, rgba(5, 9, 20, 0.36), transparent 32%);
+}
+
+.hero-slide-visual figcaption span {
+  padding: 0.9rem 1.2rem;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  backdrop-filter: blur(14px);
+}
+
+.hero-slider-section > .shell > .mt-4 {
+  min-height: 64px;
+  margin: 0;
+  padding: 0.5rem clamp(1.25rem, 3vw, 3rem);
+}
+
+@media (min-width: 640px) {
+  .hero-slider-section {
+    --hero-header-height: 86px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-slider-section {
+    --hero-header-height: 102px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-slide {
+    min-height: max(520px, calc(100svh - var(--hero-header-height) - 64px));
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(225px, 42svh) minmax(0, 1fr);
+  }
+
+  .hero-slide-visual {
+    min-height: 0;
+    height: auto;
+  }
+
+  .hero-slide-image {
+    padding: 0.5rem 1rem;
+  }
+
+  .hero-slide-copy {
+    padding: 1.2rem clamp(1.25rem, 5vw, 2.5rem) 1.5rem;
+  }
+
+  .hero-slide-copy h1 {
+    max-width: 15ch;
+    font-size: clamp(2rem, 8vw, 3.1rem);
+  }
+
+  .hero-slide-copy > p {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .hero-slide-copy > div {
+    margin-top: 1rem;
+  }
+
+  .hero-slider-section > .shell > .mt-4 {
+    min-height: 58px;
+    gap: 0.65rem;
+    padding-inline: 1rem;
+  }
+
+  .hero-control-button {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-slide {
+    min-height: max(540px, calc(100svh - var(--hero-header-height) - 58px));
+    grid-template-rows: minmax(210px, 36svh) minmax(0, 1fr);
+  }
+
+  .hero-slide-copy {
+    padding-top: 1rem;
+  }
+
+  .hero-slide-copy > div {
+    flex-direction: column;
+  }
+}
