@@ -42,7 +42,7 @@ const SEO: Record<string, { title: string; description: string }> = {
   "/contactos": {
     title: "Contactos | Gráfica Noreth — Impressão e Marketing em Luanda",
     description:
-      "Contacte a Gráfica Noreth por telefone, WhatsApp ou email. Atendimento das 07h30 às 17h30. Consulte as localizações em Luanda e peça o seu orçamento.",
+      "Contacte a Gráfica Noreth por telefone, WhatsApp ou email. Atendimento das 07h30 às 17h30. Estamos no Golf2, Quintalão do Petro, em Luanda.",
   },
 };
 

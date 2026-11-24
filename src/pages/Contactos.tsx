@@ -30,12 +30,12 @@ export default function Contactos() {
       <section className="border-t border-line/60 bg-ink-soft/50 py-16 md:py-24">
         <div className="shell">
           <SectionHeading
-            eyebrow="Localizações"
+            eyebrow="Localização"
             title="Onde encontrar a Gráfica Noreth"
-            description="Duas referências de localização em Luanda. Como as referências podem exigir confirmação, recomendamos validar a melhor opção antes da deslocação."
+            description="Estamos no Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14."
           />
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-2xl gap-5">
             {LOCATIONS.map((location, index) => (
               <Reveal key={location.id} delay={index * 90}>
                 <article className="card card-hover flex h-full flex-col gap-4 p-6 md:p-7">
@@ -61,15 +61,13 @@ export default function Contactos() {
 
           <div className="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-line bg-ink/60 p-6">
             <h3 className="text-[0.9375rem] font-bold text-white">
-              Nota sobre as localizações
+              Precisa de indicações?
             </h3>
             <p className="max-w-3xl text-[0.875rem] leading-relaxed text-muted">
-              As duas referências são apresentadas exatamente como fornecidas pela empresa.
-              Para evitar deslocações desnecessárias, confirme previamente por WhatsApp onde
-              se encontram os equipamentos e produtos que pretende consultar.
+              Envie-nos uma mensagem antes da visita e ajudaremos com qualquer indicação adicional.
             </p>
             <WhatsAppLink message={MESSAGES.localizacao} size="sm">
-              Confirmar localização pelo WhatsApp
+              Pedir indicações pelo WhatsApp
             </WhatsAppLink>
           </div>
         </div>
