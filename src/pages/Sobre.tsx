@@ -5,8 +5,9 @@ import SectionHeading from "../components/SectionHeading";
 import WhatsAppLink from "../components/WhatsAppLink";
 import Reveal from "../components/Reveal";
 import Gallery from "../components/Gallery";
-import { CATEGORIES, IMAGES } from "../data/categories";
+import { CATEGORIES } from "../data/categories";
 import { MESSAGES } from "../utils/whatsapp";
+import storeOpeningPhoto from "../assets/images/store-opening-noreth.webp";
 
 export default function Sobre() {
   return (
@@ -15,11 +16,10 @@ export default function Sobre() {
         eyebrow="Sobre nós"
         title={
           <>
-            Mais do que equipamentos, <span className="gradient-text">soluções</span> para as
-            suas ideias.
+            Serviços gráficos e impressão para dar vida às suas <span className="gradient-text">ideias</span>.
           </>
         }
-        description="A Gráfica Noreth — Prestação de Serviços & Comércio, Lda. dedica-se à disponibilização de equipamentos profissionais e soluções gráficas para quem produz, personaliza e comunica."
+        description="A Gráfica Noreth — Prestação de Serviços & Comércio, Lda. realiza serviços gráficos, impressão e marketing, e comercializa materiais gráficos, consumíveis e equipamentos."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <WhatsAppLink message={MESSAGES.geral}>
@@ -40,15 +40,14 @@ export default function Sobre() {
             </h2>
             <div className="mt-5 space-y-4 text-[1rem] leading-relaxed text-muted">
               <p>
-                A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. disponibiliza
-                equipamentos profissionais e soluções gráficas para empreendedores, empresas
-                e instituições que procuram desenvolver os seus projetos com qualidade e
-                profissionalismo.
+                A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. presta serviços
+                gráficos, de impressão e marketing, e comercializa materiais gráficos,
+                consumíveis e equipamentos para empresas, instituições e empreendedores.
               </p>
               <p>
-                Da impressão profissional aos produtos personalizados, reunimos diferentes
-                opções para apoiar quem pretende iniciar, expandir ou modernizar a sua
-                atividade.
+                Produzimos cartões de visita, roll-ups, carimbos, vestuário e brindes
+                personalizados. Também encontra connosco toners, tintas e equipamentos para
+                impressão, bordado e gravação a laser.
               </p>
               <p>
                 A nossa missão é ajudar a transformar ideias em resultados concretos,
@@ -112,19 +111,19 @@ export default function Sobre() {
           <Reveal>
             <figure className="relative overflow-hidden rounded-3xl border border-line">
               <img
-                src={IMAGES.catPrinting}
-                alt="Impressora profissional em ambiente de produção gráfica"
+                src={storeOpeningPhoto}
+                alt="Fachada da Gráfica Noreth decorada para a abertura da loja em Luanda"
                 loading="lazy"
                 decoding="async"
-                width={1000}
-                height={667}
+                width={1920}
+                height={1080}
                 className="aspect-[4/3] w-full object-cover"
               />
               <span
                 aria-hidden="true"
                 className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent"
               />
-              <figcaption className="img-tag">Imagem ilustrativa</figcaption>
+              <figcaption className="img-tag">A nossa loja em Luanda</figcaption>
             </figure>
           </Reveal>
           <Reveal delay={100}>

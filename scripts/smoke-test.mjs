@@ -4,17 +4,19 @@
  * WhatsApp e o número de destino.
  */
 import { Window } from "happy-dom";
-import App from "../src/App.tsx";
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createServer } from "vite";
 
 const window = new Window({ url: "https://graficanoreth.test/" });
 const document = window.document;
 
 globalThis.window = window;
 globalThis.document = document;
-globalThis.navigator = window.navigator;
+Object.defineProperty(globalThis, "navigator", { value: window.navigator, configurable: true });
 globalThis.HTMLElement = window.HTMLElement;
+globalThis.Element = window.Element;
+globalThis.HTMLFormElement = window.HTMLFormElement;
+globalThis.HTMLInputElement = window.HTMLInputElement;
 globalThis.HTMLAnchorElement = window.HTMLAnchorElement;
 globalThis.HTMLButtonElement = window.HTMLButtonElement;
 globalThis.location = window.location;
@@ -42,16 +44,29 @@ const errors = [];
 window.addEventListener("error", (event) => errors.push(String(event.message)));
 
 
-  const container = document.createElement("div");
-  container.id = "root";
-  document.body.appendChild(container);
-  createRoot(container).render(React.createElement(App));
+const ROUTES = ["/", "/equipamentos", "/personalizados", "/solucoes", "/sobre", "/contactos"];
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const ROUTES = ["/", "/equipamentos", "/personalizados", "/solucoes", "/sobre", "/contactos"];
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  async function main() {
-  await wait(400);
+async function main() {
+  const vite = await createServer({ server: { middlewareMode: true }, appType: "custom" });
+  let root;
+  try {
+    const { default: App } = await vite.ssrLoadModule("/src/App.tsx");
+    const { createRoot } = await import("react-dom/client");
+    const robotsMeta = document.createElement("meta");
+    robotsMeta.name = "robots";
+    robotsMeta.content = "index,follow";
+    document.head.appendChild(robotsMeta);
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = "https://graficanoreth.ao/";
+    document.head.appendChild(canonical);
+    const container = document.createElement("div");
+    container.id = "root";
+    document.body.appendChild(container);
+    root = createRoot(container);
+    root.render(React.createElement(App));
+    await wait(400);
   const results = [];
 
   for (const route of ROUTES) {
@@ -82,8 +97,17 @@ window.addEventListener("error", (event) => errors.push(String(event.message)));
     });
   }
 
+  window.history.pushState(null, "", "#/rota-inexistente");
+  window.dispatchEvent(new window.PopStateEvent("popstate", { state: null }));
+  await wait(220);
+  const missingTitle = document.title;
+  const missingRobots = document.querySelector('meta[name="robots"]')?.getAttribute("content");
+  if (!missingTitle.startsWith("404") || !missingRobots?.startsWith("noindex")) {
+    throw new Error(`Rota inválida sem metadados 404: title=${missingTitle}, robots=${missingRobots}, hash=${window.location.hash}`);
+  }
+
   // Teste de pesquisa no catálogo
-    [...document.querySelectorAll("header nav a")].find(
+  [...document.querySelectorAll("header nav a")].find(
     (a) => a.getAttribute("href") === "#/equipamentos",
   )?.click();
   await wait(300);
@@ -95,7 +119,8 @@ window.addEventListener("error", (event) => errors.push(String(event.message)));
       "value",
     );
     setter.set.call(search, "laser");
-    search.dispatchEvent(new window.Event("input", { bubbles: true }));
+    search.dispatchEvent(new window.InputEvent("input", { bubbles: true, inputType: "insertText", data: "laser" }));
+    search.dispatchEvent(new window.Event("change", { bubbles: true }));
     await wait(200);
   }
   const after = document.querySelectorAll("article").length;
@@ -107,6 +132,15 @@ window.addEventListener("error", (event) => errors.push(String(event.message)));
     await wait(120);
   }
   const menuOpen = document.getElementById("menu-mobile")?.hasAttribute("hidden") === false;
+
+  if (new Set(results.map((result) => result.title)).size !== ROUTES.length) {
+    throw new Error("Os titles SEO das rotas não são únicos.");
+  }
+  if (results.some((result) => result.brokenNumber || result.emptyHref)) {
+    throw new Error("Foi encontrado um link WhatsApp inválido ou um link sem destino.");
+  }
+  if (!search || after >= before) throw new Error("A pesquisa do catálogo não filtrou os produtos.");
+  if (!menuOpen) throw new Error("O menu mobile não abriu no teste.");
 
   console.table(results);
   console.log({
@@ -121,9 +155,13 @@ window.addEventListener("error", (event) => errors.push(String(event.message)));
     process.exit(1);
   }
   console.log("SMOKE TEST OK");
+  } finally {
+    root?.unmount();
+    await vite.close();
   }
+}
 
-  main().catch((error) => {
-    console.error("SMOKE TEST FAILED:", error);
-    process.exit(1);
-  });
+main().catch((error) => {
+  console.error("SMOKE TEST FAILED:", error);
+  process.exit(1);
+});

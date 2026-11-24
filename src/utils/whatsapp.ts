@@ -18,6 +18,13 @@ export const PHONE_DISPLAY = "+244 973 372 083";
 /** Link de chamada telefónica direta. */
 export const PHONE_TEL_HREF = "tel:+244973372083";
 
+/** Email de contacto da empresa. */
+export const COMPANY_EMAIL = "graficanoreth@gmail.com";
+export const COMPANY_EMAIL_HREF = `mailto:${COMPANY_EMAIL}`;
+
+/** Horário de atendimento informado pela empresa. */
+export const BUSINESS_HOURS = "07h30 às 17h30";
+
 /** Nome comercial utilizado nas mensagens. */
 export const COMPANY_NAME = "Gráfica Noreth";
 

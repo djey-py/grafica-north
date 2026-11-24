@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Layers, Quote, ShieldCheck, Sparkles } from "lucide-react";
 import Hero from "../components/Hero";
+import ServicesOverview from "../components/ServicesOverview";
 import SectionHeading from "../components/SectionHeading";
 import CategoryCard from "../components/CategoryCard";
 import ProductGrid from "../components/ProductGrid";
@@ -46,6 +47,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ServicesOverview />
 
       {/* Categorias */}
       <section id="categorias" className="relative py-20 md:py-28" aria-labelledby="categorias-title">
@@ -206,10 +208,9 @@ export default function Home() {
             </h2>
             <div className="mt-5 space-y-4 text-[1rem] leading-relaxed text-muted">
               <p>
-                A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. disponibiliza
-                equipamentos profissionais e soluções gráficas para empreendedores, empresas
-                e instituições que procuram desenvolver os seus projetos com qualidade e
-                profissionalismo.
+                A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. presta serviços
+                gráficos e de impressão e vende materiais gráficos, consumíveis e
+                equipamentos para empresas, instituições e empreendedores.
               </p>
               <p>
                 Da impressão profissional aos produtos personalizados, reunimos diferentes
