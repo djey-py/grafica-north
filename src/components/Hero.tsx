@@ -185,7 +185,7 @@ export default function Hero() {
           </Swiper>
         </div>
 
-        <div className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-5" aria-label="Controlos do slider">
+        <div className="hero-controls flex items-center gap-3" aria-label="Controlos do slider">
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-2.5" aria-label="Progresso dos serviços">
             {SLIDES.map((slide, index) => (
               <button

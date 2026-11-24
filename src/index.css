@@ -1409,3 +1409,73 @@
     font-size: clamp(2rem, 8vw, 3.1rem);
   }
 }
+
+/* Compact, centered Swiper navigator: readable but no longer stretched across the screen. */
+.hero-controls {
+  width: min(100% - 2.5rem, 470px);
+  min-height: 0;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 0.85rem auto 1rem;
+  border: 1px solid rgba(169, 181, 204, 0.16);
+  border-radius: 999px;
+  background: rgba(8, 15, 32, 0.78);
+  padding: 0.3rem 0.45rem 0.3rem 0.9rem;
+  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+}
+
+.hero-controls > div:first-child {
+  gap: 0.3rem;
+}
+
+.hero-controls .hero-progress-button {
+  height: 1.65rem;
+  padding-block: 0.7rem;
+}
+
+.hero-controls .hero-progress-track {
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(169, 181, 204, 0.24);
+}
+
+.hero-controls .hero-progress-button:hover .hero-progress-track {
+  background: rgba(169, 181, 204, 0.44);
+}
+
+.hero-controls > span[aria-live] {
+  min-width: 2.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-controls .hero-control-button {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-color: rgba(169, 181, 204, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.hero-controls .hero-control-button svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+@media (max-width: 480px) {
+  .hero-controls {
+    width: min(100% - 1.5rem, 380px);
+    gap: 0.45rem;
+    margin-block: 0.65rem 0.8rem;
+    padding-left: 0.65rem;
+  }
+
+  .hero-controls .hero-progress-button {
+    height: 1.5rem;
+  }
+
+  .hero-controls .hero-control-button {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
