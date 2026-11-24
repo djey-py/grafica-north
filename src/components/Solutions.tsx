@@ -12,7 +12,7 @@ const SOLUTIONS = [
     message:
       "Olá, Gráfica Noreth! Tenho interesse em impressoras profissionais. Gostaria de conhecer as opções disponíveis e solicitar um orçamento.",
     cta: "Consultar equipamentos",
-    accent: "from-electric/25 to-transparent",
+    color: "blue",
   },
   {
     icon: Megaphone,
@@ -22,7 +22,7 @@ const SOLUTIONS = [
     message:
       "Olá, Gráfica Noreth! Trabalho com publicidade e comunicação visual e gostaria de conhecer os equipamentos disponíveis para este tipo de produção.",
     cta: "Falar sobre publicidade",
-    accent: "from-aqua/20 to-transparent",
+    color: "cyan",
   },
   {
     icon: Gift,
@@ -32,7 +32,7 @@ const SOLUTIONS = [
     message:
       "Olá, Gráfica Noreth! Gostaria de conhecer as opções de produtos personalizados. Podem informar-me sobre os produtos disponíveis, técnicas de personalização, quantidades e preços?",
     cta: "Quero personalizar",
-    accent: "from-grape/40 to-transparent",
+    color: "violet",
   },
   {
     icon: ShieldCheck,
@@ -42,53 +42,47 @@ const SOLUTIONS = [
     message:
       "Olá, Gráfica Noreth! Gostaria de receber informações sobre soluções de identificação corporativa e materiais promocionais para a minha organização.",
     cta: "Pedir informações",
-    accent: "from-electric/20 to-transparent",
+    color: "blue",
   },
 ];
 
 export default function Solutions() {
   return (
-    <section
-      id="solucoes"
-      className="relative py-20 md:py-28"
-      aria-labelledby="solucoes-title"
-    >
+    <section id="solucoes" className="solutions-editorial-section" aria-labelledby="solucoes-title">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Soluções para negócios"
-          title={
-            <span id="solucoes-title">
-              Equipamentos certos para transformar a sua ideia num{" "}
-              <span className="gradient-text">negócio</span>.
-            </span>
-          }
-          description="Se pretende iniciar uma atividade na área gráfica, expandir os serviços da sua empresa ou modernizar a sua produção, a Gráfica Noreth disponibiliza equipamentos e soluções para diferentes necessidades profissionais."
-        />
+        <div className="solutions-editorial-heading">
+          <SectionHeading
+            align="left"
+            eyebrow="Soluções para negócios"
+            title={
+              <span id="solucoes-title">
+                Equipamento para a próxima etapa do seu <span className="gradient-text">negócio</span>.
+              </span>
+            }
+            description="Escolha a área que quer desenvolver. Ajudamos a encontrar equipamentos e soluções adequados ao seu projeto."
+          />
+          <span className="solutions-heading-stamp" aria-hidden="true">IDEIAS<br />EM PRODUÇÃO</span>
+        </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="solutions-editorial-list">
           {SOLUTIONS.map((solution, index) => {
             const Icon = solution.icon;
             return (
-              <Reveal key={solution.title} delay={(index % 2) * 90}>
-                <article className="card card-hover group relative flex h-full flex-col gap-4 overflow-hidden p-6 md:p-7">
-                  <span
-                    aria-hidden="true"
-                    className={`pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${solution.accent}`}
-                  />
-                  <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-ink/80 text-aqua">
-                    <Icon className="h-5.5 w-5.5" aria-hidden="true" />
+              <Reveal key={solution.title} delay={index * 65}>
+                <article className={`solution-row solution-row--${solution.color}`}>
+                  <span className="solution-row-number">0{index + 1}</span>
+                  <span className="solution-row-icon">
+                    <Icon aria-hidden="true" />
                   </span>
-                  <h3 className="relative text-[1.125rem] leading-snug font-bold text-white">
-                    {solution.title}
-                  </h3>
-                  <p className="relative flex-1 text-[0.9375rem] leading-relaxed text-muted">
-                    {solution.description}
-                  </p>
+                  <div className="solution-row-copy">
+                    <h3>{solution.title}</h3>
+                    <p>{solution.description}</p>
+                  </div>
                   <WhatsAppLink
                     message={solution.message}
                     variant="ghost"
                     size="sm"
-                    className="relative mt-1 w-fit"
+                    className="solution-row-cta"
                   >
                     {solution.cta}
                   </WhatsAppLink>

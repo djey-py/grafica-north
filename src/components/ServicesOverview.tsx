@@ -30,34 +30,43 @@ const SERVICES = [
 
 export default function ServicesOverview() {
   return (
-    <section className="border-y border-line/60 bg-ink-soft/50 py-20 md:py-24" aria-labelledby="servicos-title">
-      <div className="shell">
-        <SectionHeading
-          eyebrow="Serviços & comércio"
-          title={<span id="servicos-title">Serviços gráficos e materiais para a sua marca</span>}
-          description="Na Gráfica Noreth encontra serviços de impressão e personalização, materiais gráficos e consumíveis, além de equipamentos para dar forma às suas ideias."
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="services-overview-section" aria-labelledby="servicos-title">
+      <div className="shell services-overview-layout">
+        <div className="services-overview-intro">
+          <SectionHeading
+            align="left"
+            eyebrow="Serviços & comércio"
+            title={<span id="servicos-title">Tudo para dar forma à sua marca.</span>}
+            description="Da primeira impressão ao produto final, encontra aqui serviços, materiais e equipamentos para fazer a sua ideia avançar."
+          />
+          <div className="services-overview-actions">
+            <WhatsAppLink message={MESSAGES.geral}>Pedir informações ou orçamento</WhatsAppLink>
+            <Link to="/personalizados" className="services-overview-link">
+              Explorar personalizados <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+          <span className="services-overview-watermark" aria-hidden="true">N</span>
+        </div>
+
+        <div className="services-overview-list">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
               <Reveal key={service.title} delay={index * 70}>
-                <article className="card flex h-full flex-col p-5 md:p-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-ink/70 text-aqua">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
+                <article className="service-line">
+                  <span className="service-line-number">0{index + 1}</span>
+                  <span className="service-line-icon">
+                    <Icon aria-hidden="true" />
                   </span>
-                  <h3 className="mt-4 text-[1rem] font-bold text-white">{service.title}</h3>
-                  <p className="mt-2 flex-1 text-[0.875rem] leading-relaxed text-muted">{service.text}</p>
+                  <div className="service-line-copy">
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                  </div>
+                  <ArrowRight className="service-line-arrow" aria-hidden="true" />
                 </article>
               </Reveal>
             );
           })}
-        </div>
-        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <WhatsAppLink message={MESSAGES.geral}>Pedir informações ou orçamento</WhatsAppLink>
-          <Link to="/personalizados" className="btn btn-ghost">
-            Ver produtos personalizados <ArrowRight className="h-[1.1em] w-[1.1em]" aria-hidden="true" />
-          </Link>
         </div>
       </div>
     </section>
