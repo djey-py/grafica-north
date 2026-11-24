@@ -112,7 +112,7 @@ export default function Sobre() {
             <figure className="relative overflow-hidden rounded-3xl border border-line">
               <img
                 src={storeOpeningPhoto}
-                alt="Fachada da Gráfica Noreth decorada para a abertura da loja em Luanda"
+                alt="Fachada da Gráfica Noreth decorada para a abertura da gráfica em Luanda"
                 loading="lazy"
                 decoding="async"
                 width={1920}
@@ -123,7 +123,7 @@ export default function Sobre() {
                 aria-hidden="true"
                 className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent"
               />
-              <figcaption className="img-tag">A nossa loja em Luanda</figcaption>
+              <figcaption className="img-tag">A nossa gráfica em Luanda</figcaption>
             </figure>
           </Reveal>
           <Reveal delay={100}>

@@ -147,7 +147,11 @@ async function main() {
     menuButton.click();
     await wait(120);
   }
-  const menuOpen = document.getElementById("menu-mobile")?.hasAttribute("hidden") === false;
+  const mobilePanel = document.getElementById("menu-mobile");
+  const mobileLinkCount = mobilePanel?.querySelectorAll(
+    'nav[aria-label="Navegação principal (mobile)"] a[href]',
+  ).length ?? 0;
+  const menuOpen = mobilePanel?.parentElement === document.body && mobileLinkCount >= ROUTES.length;
 
   for (const route of ROUTES) {
     const outputFile = route === "/" ? "index.html" : `${route.slice(1)}.html`;

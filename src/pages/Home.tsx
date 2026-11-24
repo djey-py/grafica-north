@@ -238,7 +238,7 @@ export default function Home() {
             <figure className="group relative m-0 overflow-hidden rounded-[1.25rem] border border-line shadow-[0_24px_70px_-40px_rgba(32,185,242,0.55)] sm:col-span-2">
               <img
                 src="/images/storefront-noreth.webp"
-                alt="Entrada da loja da Gráfica Noreth, com a identificação Centro de Impressão e Marketing"
+                alt="Fachada da gráfica Noreth, identificada como Centro de Impressão e Marketing"
                 loading="lazy"
                 decoding="async"
                 width={1568}
@@ -247,7 +247,7 @@ export default function Home() {
               />
               <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
               <figcaption className="absolute inset-x-0 bottom-0 px-5 py-4 text-sm font-semibold text-white sm:px-6 sm:py-5">
-                A nossa loja, no Golf2, em Luanda.
+                A nossa gráfica, no Golf2, em Luanda.
               </figcaption>
             </figure>
             {PILLARS.map((pillar) => {
