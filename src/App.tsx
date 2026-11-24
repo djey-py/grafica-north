@@ -12,6 +12,7 @@ import Sobre from "./pages/Sobre";
 import Contactos from "./pages/Contactos";
 import NotFound from "./pages/NotFound";
 import AnalyticsConsent from "./components/AnalyticsConsent";
+import SplashScreen from "./components/SplashScreen";
 import { trackEvent, trackPageView } from "./utils/analytics";
 
 const SEO = Object.fromEntries(seoPages.map((page) => [page.path, page])) as Record<
@@ -163,6 +164,7 @@ export default function App() {
 
       <WhatsAppButton />
       <AnalyticsConsent />
+      <SplashScreen />
     </BrowserRouter>
   );
 }
