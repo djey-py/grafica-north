@@ -8,72 +8,82 @@ import "swiper/css";
 import { MESSAGES } from "../utils/whatsapp";
 import WhatsAppLink from "./WhatsAppLink";
 
-import printingImage from "../assets/images/hero/printing.webp";
-import giftsImage from "../assets/images/hero/gifts.webp";
-import apparelImage from "../assets/images/hero/apparel.webp";
-import equipmentImage from "../assets/images/hero/equipment.webp";
-import visualImage from "../assets/images/hero/visual.webp";
+import capsImage from "../assets/images/hero/custom-caps.webp";
+import shirtsImage from "../assets/images/hero/embroidered-shirts.webp";
+import totesImage from "../assets/images/hero/printed-totes.webp";
+import schoolKeychainsImage from "../assets/images/hero/school-keychains.webp";
+import brandKeychainsImage from "../assets/images/hero/brand-keychains.webp";
 
 const SLIDES = [
   {
-    id: "impressao",
-    eyebrow: "Produção gráfica",
-    title: "Impressão profissional",
+    id: "bones",
+    eyebrow: "Bordado personalizado",
+    title: "Bonés personalizados",
     description:
-      "Dê forma às suas ideias com materiais impressos para apresentar a sua marca com qualidade e confiança.",
-    phrase: "A qualidade da sua marca, em cada detalhe.",
-    image: printingImage,
-    imageAlt: "Materiais impressos e acabamentos gráficos numa gráfica profissional",
-    cta: "Falar sobre impressão",
-    to: "/solucoes",
-  },
-  {
-    id: "brindes",
-    eyebrow: "A sua marca em todo o lado",
-    title: "Brindes personalizados",
-    description:
-      "Canecas, garrafas, cadernos e outros artigos para oferecer, promover a sua empresa e criar boas recordações.",
-    phrase: "Ideias que ficam com as pessoas.",
-    image: giftsImage,
-    imageAlt: "Seleção de brindes promocionais como canecas, garrafa, caderno e saco de tecido",
-    cta: "Ver produtos personalizados",
+      "Bordados com detalhe para destacar a identidade da sua organização, equipa ou evento.",
+    phrase: "A sua identidade, bordada ao detalhe.",
+    image: capsImage,
+    imageAlt: "Bonés azuis com brasões e identificação institucional bordados",
+    imageWidth: 1280,
+    imageHeight: 960,
+    cta: "Ver personalização",
     to: "/personalizados",
   },
   {
-    id: "vestuario",
-    eyebrow: "Identidade para a sua equipa",
-    title: "Vestuário personalizado",
+    id: "camisas",
+    eyebrow: "Uniformes e vestuário",
+    title: "Camisas personalizadas",
     description:
-      "Vista a identidade da sua empresa com opções de vestuário personalizável para equipas, eventos e negócios.",
-    phrase: "A sua equipa, com uma identidade única.",
-    image: apparelImage,
-    imageAlt: "Casaco, camisolas e polos lisos disponíveis para personalização",
-    cta: "Explorar personalização",
+      "Personalize camisas de trabalho e uniformes para dar à equipa uma imagem cuidada e consistente.",
+    phrase: "A sua equipa, com identidade própria.",
+    image: shirtsImage,
+    imageAlt: "Camisas brancas com o logótipo Inside Interiores bordado no peito",
+    imageWidth: 1280,
+    imageHeight: 960,
+    cta: "Explorar vestuário",
     to: "/personalizados",
   },
   {
-    id: "equipamentos",
-    eyebrow: "Produção e acabamento",
-    title: "Equipamentos gráficos",
+    id: "sacolas",
+    eyebrow: "Impressão para marcas e eventos",
+    title: "Sacolas personalizadas",
     description:
-      "Encontre soluções profissionais de impressão, acabamento e personalização para dar capacidade ao seu negócio.",
-    phrase: "Equipamento certo para produzir mais.",
-    image: equipmentImage,
-    imageAlt: "Impressora gráfica profissional de grande formato num espaço de produção",
-    cta: "Explorar equipamentos",
-    to: "/equipamentos",
+      "Transforme sacolas de tecido em suportes de comunicação para campanhas, eventos e lançamentos.",
+    phrase: "Leve a sua mensagem consigo.",
+    image: totesImage,
+    imageAlt: "Sacolas brancas de tecido impressas com material de divulgação de um lançamento de livro",
+    imageWidth: 1280,
+    imageHeight: 960,
+    cta: "Personalizar sacolas",
+    to: "/personalizados",
   },
   {
-    id: "comunicacao-visual",
-    eyebrow: "Destaque para a sua marca",
-    title: "Comunicação visual",
+    id: "porta-chaves-institucionais",
+    eyebrow: "Brindes úteis para divulgar",
+    title: "Porta-chaves personalizados",
     description:
-      "Leve a sua mensagem mais longe com soluções visuais para promover a sua marca e destacar o seu espaço.",
-    phrase: "Faça-se notar. Seja lembrado.",
-    image: visualImage,
-    imageAlt: "Exemplos de materiais gráficos de comunicação visual em tons azuis numa sala de exposição",
-    cta: "Pedir uma solução à medida",
-    to: "/solucoes",
+      "Apresente a identidade da sua escola, empresa ou evento num brinde prático para oferecer e divulgar.",
+    phrase: "A sua marca, sempre à mão.",
+    image: schoolKeychainsImage,
+    imageAlt: "Conjunto de porta-chaves personalizados com a identidade de uma escola de condução",
+    imageWidth: 960,
+    imageHeight: 1280,
+    cta: "Ver opções de brindes",
+    to: "/personalizados",
+  },
+  {
+    id: "porta-chaves-de-marca",
+    eyebrow: "Peças promocionais",
+    title: "Porta-chaves com logótipo",
+    description:
+      "Leve o logótipo da sua empresa ou projeto para um artigo promocional útil, compacto e fácil de oferecer.",
+    phrase: "Pequenos detalhes, uma marca memorável.",
+    image: brandKeychainsImage,
+    imageAlt: "Porta-chaves azuis personalizados com o logótipo Cyber Riding",
+    imageWidth: 960,
+    imageHeight: 1280,
+    cta: "Pedir o seu orçamento",
+    to: "/personalizados",
   },
 ] as const;
 
@@ -100,7 +110,7 @@ export default function Hero() {
   }, [reducedMotion, swiper]);
 
   return (
-    <section className="hero-slider-section relative isolate overflow-hidden border-b border-white/[0.06]" aria-label="Serviços da Gráfica Noreth">
+    <section className="hero-slider-section relative isolate overflow-hidden border-b border-white/[0.06]" aria-label="Produtos personalizados da Gráfica Noreth">
       <div aria-hidden="true" className="pointer-events-none absolute -top-48 left-[12%] h-[32rem] w-[32rem] rounded-full bg-electric/[0.16] blur-[150px]" />
       <div aria-hidden="true" className="pointer-events-none absolute top-[20%] -right-48 h-[34rem] w-[34rem] rounded-full bg-aqua/[0.1] blur-[160px]" />
 
@@ -108,7 +118,7 @@ export default function Hero() {
         <div className="mb-5 flex items-center justify-between gap-4 sm:mb-7">
           <span className="inline-flex items-center gap-2.5 rounded-full border border-aqua/20 bg-aqua/[0.07] px-3.5 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-aqua uppercase sm:px-4 sm:text-[0.68rem]">
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            Gráfica Noreth <span className="text-white/35">/</span> Serviços
+            Gráfica Noreth <span className="text-white/35">/</span> Trabalhos reais
           </span>
           <span className="hidden text-xs font-semibold text-muted sm:inline">Luanda, Angola</span>
         </div>
@@ -143,24 +153,29 @@ export default function Hero() {
                         {slide.cta}
                         <ArrowRight className="h-4 w-4" aria-hidden="true" />
                       </Link>
-                      {index === 0 || index === 4 ? (
-                        <WhatsAppLink message={index === 0 ? MESSAGES.geral : MESSAGES.outrasNecessidades} variant="ghost" size="sm" className="min-h-[50px]">
-                          Pedir orçamento
-                        </WhatsAppLink>
-                      ) : null}
+                      <WhatsAppLink message={MESSAGES.personalizados} variant="ghost" size="sm" className="min-h-[50px]">
+                        Pedir informações
+                      </WhatsAppLink>
                     </div>
                   </div>
 
                   <figure className="hero-slide-visual group relative order-1 m-0 min-h-[240px] overflow-hidden bg-[#07101d] sm:min-h-[320px] lg:order-2 lg:min-h-[510px]">
                     <img
                       src={slide.image}
+                      alt=""
+                      aria-hidden="true"
+                      decoding="async"
+                      className="hero-slide-backdrop absolute inset-0 h-full w-full object-cover"
+                    />
+                    <img
+                      src={slide.image}
                       alt={slide.imageAlt}
-                      width={1200}
-                      height={800}
+                      width={slide.imageWidth}
+                      height={slide.imageHeight}
                       fetchPriority={index === 0 ? "high" : "auto"}
                       loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
-                      className="hero-slide-image absolute inset-0 h-full w-full object-cover"
+                      className="hero-slide-image absolute inset-0 h-full w-full object-contain p-1 sm:p-2 lg:p-3"
                     />
                     <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#050914]/70 via-transparent to-[#050914]/10 lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[#050914]/20" />
                     <figcaption className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3 sm:bottom-6 sm:left-6 sm:right-6 lg:bottom-8 lg:left-8 lg:right-8">
