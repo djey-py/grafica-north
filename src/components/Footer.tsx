@@ -144,6 +144,16 @@ export default function Footer() {
         <div className="mt-6 flex flex-col items-center justify-between gap-3 text-center md:flex-row md:text-left">
           <p className="text-[0.8125rem] text-muted">
             © {year} {COMPANY_LEGAL_NAME} Todos os direitos reservados.
+            <span className="mx-1.5 text-line" aria-hidden="true">·</span>
+            Desenvolvido por{" "}
+            <a
+              href="https://resolvatech.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline decoration-line underline-offset-4 transition-colors hover:text-aqua"
+            >
+              ResolvaTech
+            </a>
           </p>
           <div className="flex flex-col items-center gap-2 md:items-end">
             <p className="text-[0.8125rem] text-muted">
