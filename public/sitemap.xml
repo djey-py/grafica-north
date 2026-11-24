@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://graficanoreth.ao/</loc>
-  </url>
+  <url><loc>https://grafica-north.vercel.app/</loc></url>
+  <url><loc>https://grafica-north.vercel.app/equipamentos</loc></url>
+  <url><loc>https://grafica-north.vercel.app/personalizados</loc></url>
+  <url><loc>https://grafica-north.vercel.app/solucoes</loc></url>
+  <url><loc>https://grafica-north.vercel.app/sobre</loc></url>
+  <url><loc>https://grafica-north.vercel.app/contactos</loc></url>
 </urlset>

@@ -1,4 +1,3 @@
-import heroApparel from "../assets/images/hero-apparel.webp";
 import heroMugs from "../assets/images/hero-mugs.webp";
 import catBadges from "../assets/images/cat-badges.webp";
 import catCopier from "../assets/images/cat-copier.webp";
@@ -6,8 +5,29 @@ import catFinishing from "../assets/images/cat-finishing.webp";
 import catLaser from "../assets/images/cat-laser.webp";
 import catPress from "../assets/images/cat-press.webp";
 import catPrinting from "../assets/images/cat-printing.webp";
-import featuredKeychains from "../assets/images/featured-keychains.webp";
+import featuredKeychains from "../assets/images/work-samples/keychains-driving-school.webp";
+import workSampleCapAsagropec from "../assets/images/work-samples/cap-asagropec.webp";
+import workSampleCapsAsagropecGroup from "../assets/images/work-samples/caps-asagropec-group.webp";
+import workSampleCapsAsagropecLot from "../assets/images/work-samples/caps-asagropec-lot.webp";
+import workSampleKeychainsCyberRed from "../assets/images/work-samples/keychains-cyber-red.webp";
+import workSampleKeychainsCyberWhite from "../assets/images/work-samples/keychains-cyber-white.webp";
+import workSamplePoloDreamhomeBack from "../assets/images/work-samples/polo-dreamhome-back.webp";
+import workSamplePoloDreamhomeFront from "../assets/images/work-samples/polo-dreamhome-front.webp";
+import workSamplePoloGeoverde from "../assets/images/work-samples/polo-geoverde.webp";
+import workSamplePoloInside from "../assets/images/work-samples/polo-inside-interiores.webp";
+import workSampleTshirtsAsagropec from "../assets/images/work-samples/tshirts-asagropec.webp";
+import workSampleVestAngola from "../assets/images/work-samples/vest-angola.webp";
+import workSampleVestBgs from "../assets/images/work-samples/vest-reflective-bgs.webp";
+import workSampleVestMultibolsos from "../assets/images/work-samples/vest-multibolsos-angola.webp";
 import heroEquipment from "../assets/images/hero-equipment.webp";
+import equipmentEpson from "../assets/images/equipment/epson-printers.webp";
+import equipmentFlashStamp from "../assets/images/equipment/flash-stamp.webp";
+import equipmentLaminator from "../assets/images/equipment/laminator-a4.webp";
+import equipmentLaser from "../assets/images/equipment/laser-20w.webp";
+import equipmentPressCylinderDouble from "../assets/images/equipment/press-cylinder-double.webp";
+import equipmentPressFlat38 from "../assets/images/equipment/press-flat-38.webp";
+import equipmentPress8in1 from "../assets/images/equipment/press-8-in-1.webp";
+import equipmentUvDtf from "../assets/images/equipment/uv-dtf-locor.webp";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
@@ -22,15 +42,35 @@ import {
 
 /**
  * Inventário visual do website.
- * As fotografias são ilustrativas da tipologia de equipamento/produto e
- * encontram-se assinaladas como tal na interface. Para substituir por
- * fotografias reais da Gráfica Noreth basta trocar os ficheiros em
- * src/assets/images e/ou os importe abaixo.
+ * Inclui cartazes de equipamento fornecidos pela Gráfica Noreth, exemplos reais
+ * de trabalhos personalizados e imagens ilustrativas para categorias ainda sem
+ * fotografia correspondente.
  */
 export const IMAGES = {
   heroEquipment,
+  equipmentEpson,
+  equipmentFlashStamp,
+  equipmentLaminator,
+  equipmentLaser,
+  equipmentPressCylinderDouble,
+  equipmentPressFlat38,
+  equipmentPress8in1,
+  equipmentUvDtf,
+  workSampleCapAsagropec,
+  workSampleCapsAsagropecGroup,
+  workSampleCapsAsagropecLot,
+  workSampleKeychainsDrivingSchool: featuredKeychains,
+  workSampleKeychainsCyberRed,
+  workSampleKeychainsCyberWhite,
+  workSamplePoloDreamhomeBack,
+  workSamplePoloDreamhomeFront,
+  workSamplePoloGeoverde,
+  workSamplePoloInside,
+  workSampleTshirtsAsagropec,
+  workSampleVestAngola,
+  workSampleVestBgs,
+  workSampleVestMultibolsos,
   heroMugs,
-  heroApparel,
   catPrinting,
   catPress,
   catLaser,
@@ -58,7 +98,7 @@ export const CATEGORIES: Category[] = [
     short: "Impressão",
     description:
       "Impressoras profissionais para produção gráfica, impressão fotográfica e trabalho contínuo.",
-    image: "catPrinting",
+    image: "equipmentEpson",
     icon: Printer,
   },
   {
@@ -67,7 +107,7 @@ export const CATEGORIES: Category[] = [
     short: "Acabamento",
     description:
       "Laminadoras, guilhotinas e equipamentos de acabamento para um resultado final impecável.",
-    image: "catFinishing",
+    image: "equipmentLaminator",
     icon: Layers,
   },
   {
@@ -76,7 +116,7 @@ export const CATEGORIES: Category[] = [
     short: "Prensas",
     description:
       "Prensas planas para camisolas, canecas e soluções multifuncionais para sublimação e DTF.",
-    image: "catPress",
+    image: "equipmentPress8in1",
     icon: Zap,
   },
   {
@@ -94,7 +134,7 @@ export const CATEGORIES: Category[] = [
     short: "Laser",
     description:
       "Máquinas de gravação a laser para personalização de materiais e peças promocionais.",
-    image: "catLaser",
+    image: "equipmentLaser",
     icon: ScanLine,
   },
   {
@@ -112,7 +152,7 @@ export const CATEGORIES: Category[] = [
     short: "Personalização",
     description:
       "Equipamentos para personalização de vestuário, brindes e materiais publicitários.",
-    image: "heroApparel",
+    image: "workSampleTshirtsAsagropec",
     icon: Gift,
   },
   {

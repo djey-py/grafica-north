@@ -32,7 +32,7 @@ export default function Contactos() {
           <SectionHeading
             eyebrow="Localização"
             title="Onde encontrar a Gráfica Noreth"
-            description="Estamos no Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14."
+            description="Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria."
           />
 
           <div className="mx-auto mt-12 grid max-w-2xl gap-5">

@@ -21,7 +21,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "impressao-profissional",
     description:
       "Equipamento para produção rápida de carimbos profissionais, ideal para papelarias e serviços de reprografia.",
-    image: "catFinishing",
+    image: "equipmentFlashStamp",
     keywords: ["carimbo", "carimbos", "flash", "selo"],
   },
   {
@@ -30,7 +30,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "plastificacao-acabamento",
     description:
       "Plastificação de documentos, cartões e materiais impressos com acabamento resistente e profissional.",
-    image: "catFinishing",
+    image: "equipmentLaminator",
     keywords: ["laminadora", "plastificadora", "plastificação", "acabamento"],
   },
   {
@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "impressao-profissional",
     description:
       "Impressoras profissionais para impressão de qualidade em diferentes formatos e suportes.",
-    image: "catPrinting",
+    image: "equipmentEpson",
     keywords: ["epson", "impressora", "impressão", "tinta"],
   },
   {
@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "prensas-termicas",
     description:
       "Prensa térmica plana para personalização de t-shirts, polos e vestuário.",
-    image: "catPress",
+    image: "equipmentPressFlat38",
     keywords: ["prensa", "camisola", "t-shirt", "sublimação", "dtf", "térmica"],
   },
   {
@@ -93,7 +93,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "prensas-termicas",
     description:
       "Prensa térmica específica para personalização de canecas e chávenas.",
-    image: "catPress",
+    image: "equipmentPressCylinderDouble",
     keywords: ["prensa", "caneca", "chávena", "sublimação", "térmica"],
   },
   {
@@ -102,7 +102,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "prensas-termicas",
     description:
       "Solução multifuncional com vários acessórios para personalizar diferentes tipos de produto.",
-    image: "catPress",
+    image: "equipmentPress8in1",
     keywords: ["prensa", "multifuncional", "8 em 1", "sublimação", "acessórios"],
   },
   {
@@ -120,7 +120,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "gravacao-laser",
     description:
       "Gravação e corte a laser para personalização de materiais como madeira, acrílico, couro e outros.",
-    image: "catLaser",
+    image: "equipmentLaser",
     keywords: ["laser", "gravação", "corte", "acrílico", "madeira"],
   },
   {
@@ -147,7 +147,7 @@ export const PRODUCTS: Product[] = [
     categoryId: "personalizacao-brindes",
     description:
       "Equipamentos e soluções para quem trabalha ou pretende trabalhar com personalização e publicidade.",
-    image: "heroApparel",
+    image: "equipmentUvDtf",
     keywords: ["publicidade", "personalização", "brindes", "propaganda", "publicidade visual"],
   },
 ];

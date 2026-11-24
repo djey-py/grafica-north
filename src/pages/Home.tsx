@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Layers, Quote, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Layers, MapPin, ShieldCheck, Sparkles } from "lucide-react";
 import Hero from "../components/Hero";
+import ChristmasSection from "../components/ChristmasSection";
 import ServicesOverview from "../components/ServicesOverview";
 import SectionHeading from "../components/SectionHeading";
 import CategoryCard from "../components/CategoryCard";
@@ -48,6 +49,7 @@ export default function Home() {
     <>
       <Hero />
       <ServicesOverview />
+      <ChristmasSection />
 
       {/* Categorias */}
       <section id="categorias" className="relative py-20 md:py-28" aria-labelledby="categorias-title">
@@ -62,7 +64,7 @@ export default function Home() {
             }
             description="Explore equipamentos e soluções para impressão, personalização, publicidade e produção gráfica."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORIES.map((category, index) => (
               <Reveal key={category.id} delay={(index % 4) * 70}>
                 <CategoryCard category={category} />
@@ -195,67 +197,76 @@ export default function Home() {
       <Solutions />
 
       {/* Sobre nós — resumo */}
-      <section className="relative border-y border-line/60 bg-ink-soft/50 py-20 md:py-28">
-        <div className="shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
-          <Reveal>
-            <span className="eyebrow">
-              <span aria-hidden="true" className="h-px w-6 bg-aqua/70" />
-              Sobre nós
-            </span>
-            <h2 className="mt-4 text-[clamp(1.75rem,3.6vw,2.6rem)] font-extrabold text-white">
-              Mais do que equipamentos, <span className="gradient-text">soluções</span> para as
-              suas ideias.
-            </h2>
-            <div className="mt-5 space-y-4 text-[1rem] leading-relaxed text-muted">
-              <p>
-                A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. presta serviços
-                gráficos e de impressão e vende materiais gráficos, consumíveis e
-                equipamentos para empresas, instituições e empreendedores.
-              </p>
-              <p>
-                Da impressão profissional aos produtos personalizados, reunimos diferentes
-                opções para apoiar quem pretende iniciar, expandir ou modernizar a sua
-                atividade.
-              </p>
-              <p>
-                A nossa missão é ajudar a transformar ideias em resultados concretos,
-                através de equipamentos e soluções alinhados com as necessidades de cada
-                cliente.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link to="/sobre" className="btn btn-primary">
-                Conhecer a empresa
-                <ArrowRight className="h-[1.1em] w-[1.1em]" aria-hidden="true" />
-              </Link>
-              <WhatsAppLink message={MESSAGES.outrasNecessidades} variant="ghost">
-                Falar com um especialista
-              </WhatsAppLink>
-            </div>
-          </Reveal>
+      <section className="relative border-y border-line/60 bg-ink-soft/50 py-20 md:py-24" aria-labelledby="home-about-title">
+        <div className="shell">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal className="max-w-2xl">
+              <span className="eyebrow">
+                <span aria-hidden="true" className="h-px w-6 bg-aqua/70" />
+                Sobre nós
+              </span>
+              <h2 id="home-about-title" className="mt-4 text-[clamp(1.9rem,3.6vw,2.8rem)] leading-[1.12] font-extrabold tracking-tight text-white">
+                Mais do que equipamentos, <span className="gradient-text">soluções</span> para as suas ideias.
+              </h2>
+              <div className="mt-6 max-w-xl space-y-4 text-[1rem] leading-relaxed text-muted">
+                <p>
+                  A Gráfica Noreth — Prestação de Serviços &amp; Comércio, Lda. presta serviços
+                  gráficos e de impressão e fornece materiais, consumíveis e equipamentos
+                  para empresas, instituições e empreendedores.
+                </p>
+                <p>
+                  Reunimos soluções para apoiar quem pretende iniciar, expandir ou modernizar
+                  a sua atividade, com acompanhamento direto da nossa equipa.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link to="/sobre" className="btn btn-primary">
+                  Conhecer a empresa
+                  <ArrowRight className="h-[1.1em] w-[1.1em]" aria-hidden="true" />
+                </Link>
+                <WhatsAppLink message={MESSAGES.outrasNecessidades} variant="ghost">
+                  Falar com um especialista
+                </WhatsAppLink>
+              </div>
+            </Reveal>
 
-          <Reveal delay={110} className="grid gap-4 sm:grid-cols-2">
+            <Reveal delay={100} className="relative">
+              <figure className="group relative m-0 overflow-hidden rounded-[1.5rem] border border-line shadow-[0_28px_80px_-42px_rgba(32,185,242,0.48)]">
+                <img
+                  src="/images/storefront-noreth.webp"
+                  alt="Fachada da Gráfica Noreth, identificada como Centro de Impressão e Marketing"
+                  loading="lazy"
+                  decoding="async"
+                  width={1568}
+                  height={832}
+                  className="aspect-[1.45/1] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </figure>
+              <p className="mt-4 flex items-center gap-2 text-sm font-medium text-muted">
+                <MapPin className="h-4 w-4 shrink-0 text-aqua" aria-hidden="true" />
+                A nossa gráfica, no Golf2, em Luanda.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-12 grid divide-y divide-line/80 border-y border-line/80 md:grid-cols-3 md:divide-x md:divide-y-0">
             {PILLARS.map((pillar) => {
               const Icon = pillar.icon;
               return (
-                <div key={pillar.title} className="card p-5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-ink/70 text-aqua">
+                <div key={pillar.title} className="flex gap-4 py-5 md:px-5 md:py-7 md:first:pl-0 md:last:pr-0">
+                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-ink/50 text-aqua">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <h3 className="mt-4 text-[0.9375rem] font-bold text-white">{pillar.title}</h3>
-                  <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-muted">
-                    {pillar.text}
-                  </p>
+                  <div>
+                    <h3 className="text-[0.9375rem] font-bold text-white">{pillar.title}</h3>
+                    <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-muted">
+                      {pillar.text}
+                    </p>
+                  </div>
                 </div>
               );
             })}
-            <blockquote className="card relative flex flex-col justify-between gap-5 p-5 sm:col-span-2">
-              <Quote className="h-6 w-6 text-aqua/60" aria-hidden="true" />
-              <p className="text-[1.0625rem] leading-snug font-bold text-white">
-                “Na Gráfica Noreth transformamos ideias em realidade.”
-              </p>
-            </blockquote>
-          </Reveal>
+          </div>
         </div>
       </section>
 

@@ -8,23 +8,21 @@ interface LogoProps {
 /** Logótipo oficial da Gráfica Noreth, fornecido pela empresa. */
 export function Logo({ variant = "full", className }: LogoProps) {
   return (
-    <span
-      className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white p-1 shadow-[0_10px_30px_-18px_rgba(32,185,242,0.8)]",
-        className,
-      )}
-    >
+    <span className={cn("inline-flex shrink-0 items-center justify-center", className)}>
       <img
         src="/logo-grafica-noreth.png"
         alt="Gráfica Noreth — Prestação de Serviços & Comércio, Lda."
         width={720}
         height={373}
         decoding="async"
+        style={{
+          filter: "brightness(1.55) saturate(1.15) drop-shadow(0 0 2px rgba(255, 255, 255, 0.75))",
+        }}
         className={cn(
           "h-auto object-contain",
           variant === "compact"
-            ? "w-[132px]"
-            : "w-[132px] sm:w-[148px] xl:w-[164px] 2xl:w-[176px]",
+            ? "w-[100px]"
+            : "w-[108px] sm:w-[120px] xl:w-[140px] 2xl:w-[152px]",
         )}
       />
     </span>

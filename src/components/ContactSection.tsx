@@ -19,8 +19,8 @@ import { trackEvent } from "../utils/analytics";
 export const LOCATIONS = [
   {
     id: "localizacao-1",
-    label: "Golf2, Quintalão do Petro",
-    text: "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
+    label: "Golf2, Bairro Anel de Ouro",
+    text: "Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.",
   },
 ];
 

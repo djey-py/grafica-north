@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./Logo";
@@ -67,6 +68,7 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         "sticky top-0 z-40 w-full border-b backdrop-blur-2xl transition-colors duration-300",
@@ -157,10 +159,11 @@ export default function Header() {
           </button>
         </div>
       </div>
+    </header>
 
+      {open && createPortal(
       <div
         id="menu-mobile"
-        hidden={!open}
         role="dialog"
         aria-modal="true"
         aria-label="Menu principal"
@@ -231,7 +234,9 @@ export default function Header() {
             </p>
           </div>
         </nav>
-      </div>
-    </header>
+      </div>,
+      document.body,
+      )}
+    </>
   );
 }

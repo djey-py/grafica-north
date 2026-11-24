@@ -17,7 +17,7 @@ import {
 import { hasAnalyticsConfiguration, openAnalyticsPreferences } from "../utils/analytics";
 
 const LOCATIONS = [
-  "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
+  "Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.",
 ];
 
 export default function Footer() {
@@ -26,7 +26,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 mt-8 border-t border-line/80 bg-ink-soft/60">
       <div className="shell py-14 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-8">
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-[1.2fr_0.72fr_0.92fr_0.92fr_1.25fr] xl:gap-x-7">
           <div className="max-w-sm">
             <Link to="/" aria-label="Gráfica Noreth — Página inicial" className="inline-block">
               <Logo />
@@ -144,6 +144,16 @@ export default function Footer() {
         <div className="mt-6 flex flex-col items-center justify-between gap-3 text-center md:flex-row md:text-left">
           <p className="text-[0.8125rem] text-muted">
             © {year} {COMPANY_LEGAL_NAME} Todos os direitos reservados.
+            <span className="mx-1.5 text-line" aria-hidden="true">·</span>
+            Desenvolvido por{" "}
+            <a
+              href="https://resolvatech.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white underline decoration-line underline-offset-4 transition-colors hover:text-aqua"
+            >
+              ResolvaTech
+            </a>
           </p>
           <div className="flex flex-col items-center gap-2 md:items-end">
             <p className="text-[0.8125rem] text-muted">
