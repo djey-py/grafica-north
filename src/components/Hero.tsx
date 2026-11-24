@@ -24,7 +24,7 @@ export default function Hero() {
           <Reveal>
             <span className="eyebrow rounded-full border border-line bg-ink-soft/80 px-3.5 py-1.5 backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              Equipamentos profissionais &amp; personalização
+              Serviços gráficos, impressão &amp; marketing
             </span>
           </Reveal>
 
@@ -33,26 +33,26 @@ export default function Hero() {
               id="hero-title"
               className="text-[clamp(2.3rem,6.2vw,4rem)] leading-[1.02] font-extrabold text-white"
             >
-              Transformamos ideias em{" "}
-              <span className="gradient-text">oportunidades de negócio</span>.
+              Serviços gráficos e impressão para dar vida à sua{" "}
+              <span className="gradient-text">marca</span>.
             </h1>
           </Reveal>
 
           <Reveal delay={140}>
             <p className="max-w-xl text-[1rem] leading-relaxed text-muted md:text-[1.0625rem]">
-              Descubra equipamentos profissionais de impressão, personalização e produção
-              gráfica para iniciar, expandir ou modernizar o seu negócio. Da impressão aos
-              brindes personalizados, a Gráfica Noreth ajuda a transformar as suas ideias em
-              realidade.
+              A Gráfica Noreth — Prestação de Serviços & Comércio, Lda. realiza trabalhos
+              gráficos, impressão e personalização, e comercializa materiais gráficos,
+              consumíveis e equipamentos. Conte connosco para cartões de visita, vestuário,
+              brindes e soluções para comunicar a sua marca.
             </p>
           </Reveal>
 
           <Reveal delay={200} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
             <Link to="/equipamentos" className="btn btn-primary">
-              Explorar equipamentos
+              Explorar o catálogo
               <ArrowRight className="h-[1.1em] w-[1.1em]" aria-hidden="true" />
             </Link>
-            <WhatsAppLink message={MESSAGES.equipamentos} variant="ghost">
+            <WhatsAppLink message={MESSAGES.geral} variant="ghost">
               Solicitar orçamento pelo WhatsApp
             </WhatsAppLink>
           </Reveal>
@@ -63,7 +63,7 @@ export default function Hero() {
                 aria-hidden="true"
                 className="h-px w-8 bg-gradient-to-r from-aqua to-transparent"
               />
-              Equipamentos gráficos, personalização e soluções para o seu negócio.
+              Serviços gráficos • materiais • impressão • personalização
             </p>
           </Reveal>
         </div>
@@ -83,10 +83,10 @@ export default function Hero() {
 
             <figure className="relative overflow-hidden rounded-3xl border border-line shadow-[0_40px_90px_-40px_rgba(8,103,232,0.7)]">
               <img
-                src={IMAGES.heroEquipment}
-                alt="Equipamento profissional de impressão em produção gráfica, com iluminação azul e ciana"
-                width={1400}
-                height={933}
+                src="/images/storefront-noreth.webp"
+                alt="Fachada do Centro de Impressão & Marketing da Gráfica Noreth em Luanda"
+                width={1920}
+                height={1080}
                 fetchPriority="high"
                 decoding="async"
                 className="aspect-[4/3] w-full object-cover"
@@ -97,10 +97,10 @@ export default function Hero() {
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
                 <span className="text-[0.8125rem] font-bold text-white">
-                  Impressão profissional
+                  Centro de Impressão &amp; Marketing
                 </span>
                 <span className="rounded-full border border-white/12 bg-ink/70 px-2.5 py-1 text-[0.625rem] font-semibold tracking-[0.1em] text-muted uppercase backdrop-blur">
-                  Imagem ilustrativa
+                  A nossa loja
                 </span>
               </figcaption>
             </figure>

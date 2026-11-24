@@ -18,7 +18,7 @@ export default function Contactos() {
             <span className="gradient-text">realidade</span>?
           </>
         }
-        description="Fale connosco para conhecer os equipamentos disponíveis, explorar as opções de personalização ou solicitar um orçamento para o seu negócio."
+        description="Fale connosco sobre serviços gráficos, impressão, materiais, consumíveis ou produtos personalizados. Estamos disponíveis das 07h30 às 17h30 para ajudar com o seu pedido."
       >
         <WhatsAppLink message={MESSAGES.geral}>
           Falar com a Gráfica Noreth

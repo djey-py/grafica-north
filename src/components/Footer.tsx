@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { FacebookIcon } from "./BrandIcons";
 import { Logo } from "./Logo";
 import WhatsAppLink from "./WhatsAppLink";
 import { FOOTER_NAV } from "../data/navigation";
 import {
+  BUSINESS_HOURS,
+  COMPANY_EMAIL,
+  COMPANY_EMAIL_HREF,
   COMPANY_LEGAL_NAME,
   MESSAGES,
   PHONE_DISPLAY,
   PHONE_TEL_HREF,
   WHATSAPP_DISPLAY,
 } from "../utils/whatsapp";
+import { hasAnalyticsConfiguration, openAnalyticsPreferences } from "../utils/analytics";
 
 const LOCATIONS = [
   "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
@@ -32,8 +36,8 @@ export default function Footer() {
               {COMPANY_LEGAL_NAME}
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Qualidade, personalização e profissionalismo em cada detalhe. Equipamentos
-              profissionais e soluções gráficas para o seu negócio.
+              Serviços gráficos, impressão e personalização, com venda de materiais,
+              consumíveis e equipamentos para o seu negócio.
             </p>
             <WhatsAppLink
               message={MESSAGES.geral}
@@ -94,6 +98,22 @@ export default function Footer() {
                   <span className="block font-semibold text-white">{WHATSAPP_DISPLAY}</span>
                 </span>
               </li>
+              <li>
+                <a href={COMPANY_EMAIL_HREF} className="flex items-start gap-2.5 text-muted transition-colors hover:text-white">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-aqua" aria-hidden="true" />
+                  <span>
+                    Email
+                    <span className="block break-all font-semibold text-white">{COMPANY_EMAIL}</span>
+                  </span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-muted">
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-aqua" aria-hidden="true" />
+                <span>
+                  Horário de atendimento
+                  <span className="block font-semibold text-white">{BUSINESS_HOURS}</span>
+                </span>
+              </li>
               <li className="flex items-start gap-2.5 text-muted">
                 <FacebookIcon className="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
                 <span>
@@ -126,9 +146,16 @@ export default function Footer() {
           <p className="text-[0.8125rem] text-muted">
             © {year} {COMPANY_LEGAL_NAME} Todos os direitos reservados.
           </p>
-          <p className="text-[0.8125rem] text-muted">
-            Na Gráfica Noreth transformamos ideias em realidade.
-          </p>
+          <div className="flex flex-col items-center gap-2 md:items-end">
+            <p className="text-[0.8125rem] text-muted">
+              Na Gráfica Noreth transformamos ideias em realidade.
+            </p>
+            {hasAnalyticsConfiguration ? (
+              <button type="button" onClick={openAnalyticsPreferences} className="text-xs text-muted underline decoration-line underline-offset-4 transition-colors hover:text-white">
+                Preferências de análise
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
     </footer>

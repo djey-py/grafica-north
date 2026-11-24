@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { CheckCircle2, MapPin, Phone, Send } from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FacebookIcon, WhatsAppIcon } from "./BrandIcons";
 import WhatsAppLink from "./WhatsAppLink";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import {
+  BUSINESS_HOURS,
+  COMPANY_EMAIL,
+  COMPANY_EMAIL_HREF,
   MESSAGES,
   PHONE_DISPLAY,
   PHONE_TEL_HREF,
   WHATSAPP_DISPLAY,
   whatsappUrl,
 } from "../utils/whatsapp";
+import { trackEvent } from "../utils/analytics";
 
 export const LOCATIONS = [
   {
@@ -64,6 +68,9 @@ export default function ContactSection({ id = "contactos" }: ContactSectionProps
 
     const text = `Olá, Gráfica Noreth! Sou ${trimmedName} e ${subjectLabel}.\n\n${trimmedMessage}`;
 
+    // Dispara apenas após a validação e a preparação do pedido; dados do formulário não são enviados à análise.
+    trackEvent("form_submit", { form_id: "contact", subject, submission_method: "whatsapp_open" });
+    trackEvent("click_whatsapp", { source: "contact_form" });
     window.open(whatsappUrl(text), "_blank", "noopener,noreferrer");
   };
 
@@ -77,7 +84,7 @@ export default function ContactSection({ id = "contactos" }: ContactSectionProps
               Vamos transformar a sua ideia em <span className="gradient-text">realidade</span>?
             </span>
           }
-          description="Fale connosco para conhecer os equipamentos disponíveis, explorar as opções de personalização ou solicitar um orçamento para o seu negócio."
+          description="Fale connosco sobre serviços gráficos, impressão, materiais gráficos, consumíveis ou produtos personalizados. Respondemos durante o nosso horário de atendimento, das 07h30 às 17h30."
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
@@ -138,6 +145,25 @@ export default function ContactSection({ id = "contactos" }: ContactSectionProps
                 <p className="mt-1 text-[0.8125rem] text-muted">
                   Procure-nos na rede como Gráfica Noreth.
                 </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={140} className="card flex flex-col gap-5 p-6">
+              <div className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-aqua" aria-hidden="true" />
+                <div>
+                  <h3 className="text-[0.6875rem] font-bold tracking-[0.16em] text-muted uppercase">Email</h3>
+                  <a href={COMPANY_EMAIL_HREF} className="mt-1 block break-all text-sm font-bold text-white transition-colors hover:text-aqua">
+                    {COMPANY_EMAIL}
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-aqua" aria-hidden="true" />
+                <div>
+                  <h3 className="text-[0.6875rem] font-bold tracking-[0.16em] text-muted uppercase">Horário de atendimento</h3>
+                  <p className="mt-1 text-sm font-bold text-white">{BUSINESS_HOURS}</p>
+                </div>
               </div>
             </Reveal>
 
