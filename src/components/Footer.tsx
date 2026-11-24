@@ -17,7 +17,7 @@ import {
 import { hasAnalyticsConfiguration, openAnalyticsPreferences } from "../utils/analytics";
 
 const LOCATIONS = [
-  "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
+  "Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.",
 ];
 
 export default function Footer() {

@@ -10,7 +10,7 @@ A configuração foi adaptada ao website existente da Gráfica Noreth. O domíni
 - `public/robots.txt` permite rastreio e anuncia o sitemap. `public/sitemap.xml` lista apenas as seis rotas reais.
 - `public/grafica-noreth-og.png` (1200 × 630) é a imagem Open Graph/Twitter; `public/noreth-mark.svg` é o ícone.
 - As imagens fotográficas estão otimizadas em WebP, com texto alternativo e dimensões; a imagem principal tem prioridade de carregamento.
-- JSON-LD descreve a empresa como `LocalBusiness`, com a única morada confirmada: Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.
+- JSON-LD descreve a empresa como `LocalBusiness`, com a morada confirmada: Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.
 - `public/404.html` fornece a página de erro estática para Vercel; a aplicação mantém também uma vista 404 para navegação interna. URLs desconhecidas devem ser testadas no deployment para confirmar o status HTTP 404.
 - `vercel.json` configura URLs sem `.html`, normalização de barra final e cabeçalhos de segurança. A Vercel fornece HTTPS para o domínio `vercel.app`; o `.htaccess` é apenas alternativa para alojamento Apache e não é aplicado pela Vercel.
 - Google Analytics 4 tem suporte opcional, consentimento explícito e eventos de page view, WhatsApp, contactos e formulário. O Measurement ID ainda não está configurado nas variáveis do projeto Vercel, portanto não há recolha de dados ativa.

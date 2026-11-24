@@ -156,6 +156,10 @@ async function main() {
   if (ROUTES.some((route) => !sitemap.includes(`https://grafica-north.vercel.app${route === "/" ? "/" : route}`))) {
     throw new Error("Sitemap estático não inclui todas as rotas públicas.");
   }
+  const notFoundHtml = await readFile(new URL("../dist/404.html", import.meta.url), "utf8");
+  if (!notFoundHtml.includes('src="/logo-grafica-noreth.png"') || !notFoundHtml.includes('name="robots" content="noindex,follow"')) {
+    throw new Error("A página 404 estática não tem o logo oficial ou a diretiva noindex.");
+  }
 
   if (new Set(results.map((result) => result.title)).size !== ROUTES.length) {
     throw new Error("Os titles SEO das rotas não são únicos.");
