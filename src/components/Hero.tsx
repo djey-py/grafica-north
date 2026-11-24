@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { A11y, Autoplay, Keyboard } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
-import { ArrowDownRight, ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowDownRight, ArrowLeft, ArrowRight } from "lucide-react";
 import "swiper/css";
 import { MESSAGES } from "../utils/whatsapp";
 import WhatsAppLink from "./WhatsAppLink";
@@ -115,14 +115,6 @@ export default function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute top-[20%] -right-48 h-[34rem] w-[34rem] rounded-full bg-aqua/[0.1] blur-[160px]" />
 
       <div className="shell relative py-8 sm:py-10 lg:py-14">
-        <div className="mb-5 flex items-center justify-between gap-4 sm:mb-7">
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-aqua/20 bg-aqua/[0.07] px-3.5 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-aqua uppercase sm:px-4 sm:text-[0.68rem]">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            Gráfica Noreth <span className="text-white/35">/</span> Trabalhos reais
-          </span>
-          <span className="hidden text-xs font-semibold text-muted sm:inline">Luanda, Angola</span>
-        </div>
-
         <div className="hero-swiper-shell overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#080f20] shadow-[0_36px_110px_-48px_rgba(8,103,232,0.62)] sm:rounded-[1.8rem] lg:rounded-[2.1rem]">
           <Swiper
             modules={[Autoplay, Keyboard, A11y]}
