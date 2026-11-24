@@ -8,7 +8,7 @@ import { Window } from "happy-dom";
 import React from "react";
 import { createServer } from "vite";
 
-const window = new Window({ url: "https://graficanoreth.test/" });
+const window = new Window({ url: "https://graficanoreth.test/?natal-test=1" });
 const document = window.document;
 
 globalThis.window = window;
@@ -96,6 +96,23 @@ async function main() {
       }
     } else if (!christmasContent || christmasPosters.length !== 20) {
       throw new Error("A campanha de Natal não revelou todos os cartazes após a data de abertura.");
+    }
+    if (Date.now() < Date.parse("2026-11-30T23:00:00.000Z")) {
+      const previewButton = christmasSection.querySelector(".christmas-test-button");
+      if (!previewButton) throw new Error("O botão de teste do Natal não aparece em modo de teste.");
+      previewButton.click();
+      await wait(100);
+      if (christmasSection.querySelectorAll('img[src^="/images/natal/"]').length !== 20) {
+        throw new Error("O botão de teste não revelou os cartazes da campanha de Natal.");
+      }
+      christmasSection.querySelector(".christmas-test-notice button")?.click();
+      await wait(100);
+      if (
+        christmasSection.querySelector('[data-christmas-content]') ||
+        christmasSection.querySelectorAll('img[src^="/images/natal/"]').length
+      ) {
+        throw new Error("O botão para voltar não restaurou a contagem decrescente.");
+      }
     }
   const results = [];
 

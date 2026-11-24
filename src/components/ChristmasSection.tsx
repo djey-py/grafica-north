@@ -55,7 +55,9 @@ const COUNTDOWN_UNITS = [
 
 export default function ChristmasSection() {
   const [now, setNow] = useState(() => Date.now());
-  const released = now >= CHRISTMAS_REVEAL_AT;
+  const [previewOverride, setPreviewOverride] = useState(false);
+  const testMode = new URLSearchParams(window.location.search).get("natal-test") === "1";
+  const released = now >= CHRISTMAS_REVEAL_AT || (testMode && previewOverride);
   const countdown = getCountdown(now);
 
   useEffect(() => {
@@ -125,9 +127,28 @@ export default function ChristmasSection() {
               <Gift className="h-4 w-4 text-amber-200" aria-hidden="true" />
               Guarde esta data. Estamos a preparar tudo com carinho.
             </p>
+            {testMode ? (
+              <button
+                type="button"
+                className="christmas-test-button mt-6"
+                aria-pressed={previewOverride}
+                onClick={() => setPreviewOverride(true)}
+              >
+                Pré-visualizar a surpresa (teste)
+                <Sparkles className="h-4 w-4" aria-hidden="true" />
+              </button>
+            ) : null}
           </div>
         ) : (
           <div data-christmas-content className="mt-12" aria-live="polite">
+            {testMode && previewOverride && now < CHRISTMAS_REVEAL_AT ? (
+              <div className="christmas-test-notice" role="status">
+                <span>Pré-visualização de teste — o temporizador real não foi alterado.</span>
+                <button type="button" onClick={() => setPreviewOverride(false)}>
+                  Voltar à contagem
+                </button>
+              </div>
+            ) : null}
             <div className="mx-auto mb-9 flex max-w-3xl flex-col items-center gap-4 text-center">
               <span className="christmas-open-badge">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />

@@ -659,3 +659,47 @@
     transition: none;
   }
 }
+
+.christmas-test-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px dashed rgba(248, 220, 158, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.65rem 1.1rem;
+  color: #fff4d8;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.christmas-test-button:hover {
+  border-color: #f6d28b;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.christmas-test-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  margin: 0 auto 2rem;
+  width: fit-content;
+  border: 1px dashed rgba(248, 220, 158, 0.55);
+  border-radius: 1rem;
+  background: rgba(28, 6, 8, 0.5);
+  padding: 0.8rem 1rem;
+  color: #fff4d8;
+  font-size: 0.8rem;
+}
+
+.christmas-test-notice button {
+  color: #f6d28b;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
