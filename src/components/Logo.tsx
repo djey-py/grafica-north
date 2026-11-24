@@ -15,6 +15,9 @@ export function Logo({ variant = "full", className }: LogoProps) {
         width={720}
         height={373}
         decoding="async"
+        style={{
+          filter: "brightness(1.55) saturate(1.15) drop-shadow(0 0 2px rgba(255, 255, 255, 0.75))",
+        }}
         className={cn(
           "h-auto object-contain",
           variant === "compact"
