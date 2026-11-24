@@ -18,7 +18,6 @@ import { hasAnalyticsConfiguration, openAnalyticsPreferences } from "../utils/an
 
 const LOCATIONS = [
   "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
-  "Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.",
 ];
 
 export default function Footer() {
@@ -124,7 +123,7 @@ export default function Footer() {
             </ul>
 
             <h3 className="mt-7 text-[0.6875rem] font-bold tracking-[0.18em] text-aqua uppercase">
-              Localizações
+              Localização
             </h3>
             <ul className="mt-4 space-y-3">
               {LOCATIONS.map((location) => (

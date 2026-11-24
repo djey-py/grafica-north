@@ -22,11 +22,6 @@ export const LOCATIONS = [
     label: "Golf2, Quintalão do Petro",
     text: "Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.",
   },
-  {
-    id: "localizacao-2",
-    label: "Golf2, Bairro Anel de Ouro",
-    text: "Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.",
-  },
 ];
 
 const SUBJECTS = [
@@ -170,7 +165,7 @@ export default function ContactSection({ id = "contactos" }: ContactSectionProps
             <Reveal delay={150} className="card p-6">
               <h3 className="flex items-center gap-2 text-[0.6875rem] font-bold tracking-[0.16em] text-aqua uppercase">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
-                Localizações
+                Localização
               </h3>
               <ul className="mt-4 flex flex-col gap-4">
                 {LOCATIONS.map((location) => (
