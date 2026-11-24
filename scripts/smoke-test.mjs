@@ -85,8 +85,13 @@ async function main() {
     }
     const christmasContent = christmasSection.querySelector("[data-christmas-content]");
     const christmasPosters = christmasSection.querySelectorAll('img[src^="/images/natal/"]');
-    if (Date.now() < Date.parse("2027-11-30T23:00:00.000Z")) {
-      if (christmasContent || christmasPosters.length || !christmasSection.textContent.includes("A surpresa abre em")) {
+    if (Date.now() < Date.parse("2026-11-30T23:00:00.000Z")) {
+      if (
+        christmasContent ||
+        christmasPosters.length ||
+        !christmasSection.textContent.includes("A surpresa abre em") ||
+        !christmasSection.textContent.includes("1 de dezembro de 2026, à meia-noite (hora de Luanda)")
+      ) {
         throw new Error("A campanha de Natal deve mostrar apenas a contagem decrescente antes da data.");
       }
     } else if (!christmasContent || christmasPosters.length !== 20) {

@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import WhatsAppLink from "./WhatsAppLink";
 
-// Luanda is UTC+1 year-round: midnight on 1 December 2027 is 23:00 UTC on 30 November.
-export const CHRISTMAS_REVEAL_AT = Date.parse("2027-11-30T23:00:00.000Z");
+// Luanda is UTC+1 year-round: midnight on 1 December 2026 is 23:00 UTC on 30 November.
+export const CHRISTMAS_REVEAL_AT = Date.parse("2026-11-30T23:00:00.000Z");
 
 const CHRISTMAS_ITEMS = [
   { image: "natal-01.webp", title: "Agenda corporativa", kind: "Brinde de Natal" },
@@ -118,7 +118,7 @@ export default function ChristmasSection() {
               </div>
               <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/15 px-4 py-2 text-xs text-white/70 sm:text-sm">
                 <CalendarDays className="h-4 w-4 text-amber-200" aria-hidden="true" />
-                1 de dezembro de 2027, à meia-noite (hora de Luanda)
+                1 de dezembro de 2026, à meia-noite (hora de Luanda)
               </div>
             </div>
             <p className="mt-5 flex items-center justify-center gap-2 text-sm text-white/55">
