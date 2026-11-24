@@ -40,6 +40,11 @@
     font-feature-settings: "ss01", "cv11";
   }
 
+  body * {
+    text-align: justify !important;
+    text-justify: inter-word;
+  }
+
   /* Ambient brand lighting fixed behind the whole experience */
   body::before {
     content: "";
@@ -622,11 +627,10 @@
 
 .christmas-product-details {
   display: flex;
-  min-height: 9.25rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.55rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem 1rem;
 }
 
 .christmas-product-kind {

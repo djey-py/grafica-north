@@ -169,7 +169,7 @@ export default function ChristmasSection() {
               </a>
             </div>
 
-            <div id="natal-ofertas" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div id="natal-ofertas" className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {CHRISTMAS_ITEMS.map((item, index) => (
                 <a
                   key={item.image}
