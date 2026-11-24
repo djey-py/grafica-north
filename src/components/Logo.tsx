@@ -5,33 +5,28 @@ interface LogoProps {
   className?: string;
 }
 
-/**
- * Logótipo da Gráfica Noreth.
- *
- * Nota: não foi fornecido nenhum ficheiro vetorial do logótipo original,
- * pelo que esta implementação recria a assinatura da marca em SVG/CSS com a
- * paleta azul, ciano e roxo da identidade. Para usar o logótipo original,
- * basta colocar o ficheiro (SVG ou PNG transparente) em src/assets/logos/
- * e substituir este componente por uma tag <img>.
- */
+/** Logótipo oficial da Gráfica Noreth, fornecido pela empresa. */
 export function Logo({ variant = "full", className }: LogoProps) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <Mark className="h-9 w-9 shrink-0 md:h-10 md:w-10" />
-      {variant === "full" ? (
-        <span className="flex flex-col leading-none">
-          <span className="text-[0.5625rem] font-bold tracking-[0.32em] text-muted uppercase">
-            Gráfica
-          </span>
-          <span className="gradient-text text-[1.4rem] font-extrabold tracking-[0.02em] md:text-[1.55rem]">
-            NORETH
-          </span>
-        </span>
-      ) : (
-        <span className="gradient-text text-[1.35rem] font-extrabold tracking-[0.02em]">
-          NORETH
-        </span>
+    <span
+      className={cn(
+        "inline-flex shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white p-1 shadow-[0_10px_30px_-18px_rgba(32,185,242,0.8)]",
+        className,
       )}
+    >
+      <img
+        src="/logo-grafica-noreth.png"
+        alt="Gráfica Noreth — Prestação de Serviços & Comércio, Lda."
+        width={720}
+        height={373}
+        decoding="async"
+        className={cn(
+          "h-auto object-contain",
+          variant === "compact"
+            ? "w-[132px]"
+            : "w-[132px] sm:w-[148px] xl:w-[164px] 2xl:w-[176px]",
+        )}
+      />
     </span>
   );
 }
