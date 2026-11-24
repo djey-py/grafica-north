@@ -151,7 +151,8 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  <figure className="hero-slide-visual group relative order-1 m-0 min-h-[240px] overflow-hidden bg-[#07101d] sm:min-h-[320px] lg:order-2 lg:min-h-[510px]">
+                  <div className="hero-slide-visual group relative order-1 min-w-0 overflow-hidden bg-[#07101d] lg:order-2">
+                    <figure className="hero-slide-figure relative m-0 h-full min-h-[240px] overflow-hidden bg-[#07101d] sm:min-h-[320px] lg:min-h-[510px]">
                     <img
                       src={slide.image}
                       alt=""
@@ -176,7 +177,8 @@ export default function Hero() {
                       </span>
                       <ArrowDownRight className="hidden h-8 w-8 shrink-0 text-white/70 drop-shadow sm:block" aria-hidden="true" />
                     </figcaption>
-                  </figure>
+                    </figure>
+                  </div>
                 </article>
               </SwiperSlide>
             ))}
