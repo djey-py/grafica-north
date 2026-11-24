@@ -7,7 +7,9 @@ import {
   Gift,
   Sparkles,
 } from "lucide-react";
+import { WhatsAppIcon } from "./BrandIcons";
 import WhatsAppLink from "./WhatsAppLink";
+import { whatsappUrl } from "../utils/whatsapp";
 
 // Luanda is UTC+1 year-round: midnight on 1 December 2026 is 23:00 UTC on 30 November.
 export const CHRISTMAS_REVEAL_AT = Date.parse("2026-11-30T23:00:00.000Z");
@@ -29,11 +31,15 @@ const CHRISTMAS_ITEMS = [
   { image: "natal-14.webp", title: "Prensa cilíndrica dupla", kind: "Equipamento gráfico" },
   { image: "natal-15.webp", title: "Prensa térmica cilíndrica", kind: "Equipamento gráfico" },
   { image: "natal-16.webp", title: "Prensa térmica plana 12 × 12", kind: "Equipamento gráfico" },
-  { image: "natal-17.webp", title: "Prensa térmica plana 38 × 38", kind: "Equipamento gráfico" },
-  { image: "natal-18.webp", title: "Prensa térmica para personalização", kind: "Equipamento gráfico" },
+  { image: "natal-17.webp", title: "Prensa térmica plana 38 × 38 — 240.000 Kz", kind: "Equipamento gráfico" },
+  { image: "natal-18.webp", title: "Prensa para lapiseira — 175.000 Kz", kind: "Equipamento gráfico" },
   { image: "natal-19.webp", title: "Impressora UV DTF Locor 30 cm", kind: "Equipamento gráfico" },
-  { image: "natal-20.webp", title: "Prensa térmica plana 38 × 38", kind: "Equipamento gráfico" },
+  { image: "natal-20.webp", title: "Prensa térmica plana 38 × 38 — 215.000 Kz", kind: "Equipamento gráfico" },
 ];
+
+function christmasProductMessage(title: string) {
+  return `Olá, Gráfica Noreth! Tenho interesse em ${title}, da campanha de Natal. Vi o cartaz no vosso site e gostaria de confirmar o preço, a disponibilidade e como posso encomendar.`;
+}
 
 function getCountdown(now: number) {
   const remaining = Math.max(0, CHRISTMAS_REVEAL_AT - now);
@@ -165,13 +171,18 @@ export default function ChristmasSection() {
 
             <div id="natal-ofertas" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {CHRISTMAS_ITEMS.map((item, index) => (
-                <article
+                <a
                   key={item.image}
+                  href={whatsappUrl(christmasProductMessage(item.title))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Pedir informações sobre ${item.title} pelo WhatsApp`}
                   className="christmas-product-card"
                   style={{ animationDelay: `${Math.min(index * 45, 500)}ms` }}
                 >
-                  <div className="christmas-product-image">
+                  <div className={`christmas-product-image ${index < 7 ? "christmas-product-image--portrait" : "christmas-product-image--square"}`}>
                     <img
+                      className="christmas-product-poster"
                       src={`/images/natal/${item.image}`}
                       alt={`Cartaz de Natal da Gráfica Noreth: ${item.title}`}
                       width={index < 7 ? 1120 : 1400}
@@ -179,13 +190,17 @@ export default function ChristmasSection() {
                       loading={index < 4 ? "eager" : "lazy"}
                       decoding="async"
                     />
+                  </div>
+                  <div className="christmas-product-details">
                     <span className="christmas-product-kind">{item.kind}</span>
-                  </div>
-                  <div className="flex min-h-[4.5rem] items-center justify-between gap-3 p-4">
                     <h3 className="text-sm font-bold leading-snug text-white">{item.title}</h3>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-amber-200/80" aria-hidden="true" />
+                    <span className="christmas-product-cta">
+                      <WhatsAppIcon className="h-4 w-4" />
+                      Pedir pelo WhatsApp
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
                   </div>
-                </article>
+                </a>
               ))}
             </div>
 

@@ -105,6 +105,21 @@ async function main() {
       if (christmasSection.querySelectorAll('img[src^="/images/natal/"]').length !== 20) {
         throw new Error("O botão de teste não revelou os cartazes da campanha de Natal.");
       }
+      const christmasProductLinks = [...christmasSection.querySelectorAll("a.christmas-product-card")];
+      const christmasMessages = christmasProductLinks.map((link) => new URL(link.href).searchParams.get("text"));
+      if (
+        christmasProductLinks.length !== 20 ||
+        christmasProductLinks.some((link, index) =>
+          !link.href.startsWith("https://wa.me/244930745803?") ||
+          link.target !== "_blank" ||
+          !link.querySelector("img.christmas-product-poster") ||
+          link.querySelector(".christmas-product-image .christmas-product-kind") ||
+          !christmasMessages[index]?.includes("Tenho interesse em")
+        ) ||
+        new Set(christmasMessages).size !== 20
+      ) {
+        throw new Error("Os cartazes precisam estar completos e cada um deve abrir uma mensagem própria no WhatsApp.");
+      }
       christmasSection.querySelector(".christmas-test-notice button")?.click();
       await wait(100);
       if (
