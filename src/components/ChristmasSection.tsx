@@ -69,7 +69,7 @@ export default function ChristmasSection() {
       id="surpresa-de-natal"
       className="christmas-section relative isolate overflow-hidden border-y border-amber-200/20 py-20 md:py-28"
       aria-labelledby="christmas-title"
-      data-release-at="2027-12-01T00:00:00+01:00"
+      data-release-at="2026-12-01T00:00:00+01:00"
     >
       <div aria-hidden="true" className="christmas-glow" />
       <div aria-hidden="true" className="christmas-garland">

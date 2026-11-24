@@ -80,7 +80,7 @@ async function main() {
       throw new Error("A galeria da homepage não apresenta os novos exemplos de trabalhos reais.");
     }
     const christmasSection = document.querySelector("#surpresa-de-natal");
-    if (!christmasSection || christmasSection.getAttribute("data-release-at") !== "2027-12-01T00:00:00+01:00") {
+    if (!christmasSection || christmasSection.getAttribute("data-release-at") !== "2026-12-01T00:00:00+01:00") {
       throw new Error("A secção de Natal ou a data de abertura não está configurada corretamente.");
     }
     const christmasContent = christmasSection.querySelector("[data-christmas-content]");
