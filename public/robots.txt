@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://graficanoreth.ao/sitemap.xml
+Sitemap: https://grafica-north.vercel.app/sitemap.xml

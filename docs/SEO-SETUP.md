@@ -1,73 +1,54 @@
 # SEO, indexação, medição e publicação — Gráfica Noreth
 
-## Estado e limites do projeto
+## O que foi aplicado no código
 
-O site é uma aplicação Vite/React com `HashRouter`, não o projeto de cursos descrito no prompt de referência. Foram mantidos a marca e os conteúdos da Gráfica Noreth. As rotas públicas existentes são Início, Equipamentos, Produtos personalizados, Soluções para negócios, Sobre nós e Contactos. Não existem páginas individuais de cursos, instrutores, inscrições, nem perfis de redes sociais confirmados neste repositório.
+A configuração foi adaptada ao website existente da Gráfica Noreth. O domínio confirmado na Vercel para este projeto é `https://grafica-north.vercel.app`; a Vercel não devolveu um domínio `graficanoreth.ao` ligado ao projeto. Por isso, canonical, Open Graph e sitemap usam o host ativo e verificável. Se a empresa ligar um domínio próprio, atualize primeiro os endereços canónicos e só depois solicite indexação.
 
-As rotas são fragmentos (`/#/equipamentos`), não documentos HTML separados. O sitemap lista apenas a raiz pública real. Fragmentos não são URLs independentes para indexação convencional; canonical e JSON-LD apontam para `https://graficanoreth.ao/`. Os títulos/descrições das vistas são atualizados no cliente. Sem SSR/prerender — não adicionado para preservar a arquitetura — os metadados das vistas internas não são entregues como HTML independente a todos os crawlers. Se for necessário posicionar cada secção como página autónoma, migre as rotas para URLs reais e configure prerender/SSR e o servidor antes de as acrescentar ao sitemap.
+- URLs reais para as seis páginas existentes, com `BrowserRouter`; links antigos `/#/rota` são encaminhados para o caminho equivalente.
+- `src/data/seo-pages.json` é a fonte única dos títulos e descrições de cada página.
+- O plugin em `vite.config.ts` gera HTML estático por página após o build. Cada documento recebe title, description, canonical, Open Graph e `WebPage` JSON-LD próprios; `vercel.json` publica os documentos com URLs limpas.
+- `public/robots.txt` permite rastreio e anuncia o sitemap. `public/sitemap.xml` lista apenas as seis rotas reais.
+- `public/grafica-noreth-og.png` (1200 × 630) é a imagem Open Graph/Twitter; `public/noreth-mark.svg` é o ícone.
+- As imagens fotográficas estão otimizadas em WebP, com texto alternativo e dimensões; a imagem principal tem prioridade de carregamento.
+- JSON-LD descreve a empresa como `LocalBusiness`, com a única morada confirmada: Golf2, Quintalão do Petro, de frente às bombas da Sonangol — Rua 14.
+- `public/404.html` fornece a página de erro estática para Vercel; a aplicação mantém também uma vista 404 para navegação interna. URLs desconhecidas devem ser testadas no deployment para confirmar o status HTTP 404.
+- `vercel.json` configura URLs sem `.html`, normalização de barra final e cabeçalhos de segurança. A Vercel fornece HTTPS para o domínio `vercel.app`; o `.htaccess` é apenas alternativa para alojamento Apache e não é aplicado pela Vercel.
+- Google Analytics 4 tem suporte opcional, consentimento explícito e eventos de page view, WhatsApp, contactos e formulário. O Measurement ID ainda não está configurado nas variáveis do projeto Vercel, portanto não há recolha de dados ativa.
 
-O domínio e endereço canónicos abaixo foram herdados do `og:url` que já existia no site; confirme a propriedade do domínio e a preferência por `www` com a empresa/hosting antes de publicar. Nenhuma verificação externa de DNS/SSL foi feita nesta implementação.
+## Google Search Console e indexação — requer validação da empresa
 
-## Ficheiros
+A integração real não pode ser concluída sem verificação da propriedade do domínio no Google. Nenhum token foi inventado e não foi afirmado que o Google já indexou o site.
 
-- `public/robots.txt`: permite o rastreamento e anuncia o sitemap.
-- `public/sitemap.xml`: inclui somente a homepage existente, sem `lastmod` fabricado.
-- `public/grafica-noreth-og.png` (1200 × 630) e fonte `public/grafica-noreth-og.svg`: partilha social na paleta e marca existentes.
-- `public/noreth-mark.svg`: símbolo da marca para ícone e Schema.org.
-- `public/404.html`: página estática de erro; o servidor precisa responder com status 404 para uma URL inexistente.
-- `public/.htaccess`: cabeçalhos de segurança, cache/compressão e `ErrorDocument` para Apache. Não ativa redirecionamentos de domínio ou HSTS automaticamente.
-- `src/utils/analytics.ts`, `src/components/AnalyticsConsent.tsx`: GA4 sob consentimento e eventos.
-- `.env.example`: configuração opcional do GA4 (Measurement ID vazio por omissão).
+1. Escolha o domínio público definitivo. Atualmente o projeto Vercel só tem `grafica-north.vercel.app` associado; ligue o domínio oficial no hosting/DNS, se aplicável.
+2. Crie/valide a propriedade correspondente no [Google Search Console](https://search.google.com/search-console/) por DNS. Se usar verificação HTML, forneça o token para o inserir no `<head>`.
+3. Depois de o deployment público estar atualizado e acessível por HTTPS, submeta `https://grafica-north.vercel.app/sitemap.xml` (ou o sitemap do domínio oficial que vier a ser ligado).
+4. Use Inspeção de URL nas páginas públicas para verificar resposta, canonical e rastreabilidade; peça indexação quando apropriado. A submissão não garante indexação ou posicionamento.
 
-## Domínio, canonical, sitemap e robots
+## Google Analytics 4 — Measurement ID por configurar
 
-1. Confirme com a empresa/hosting que `https://graficanoreth.ao/` é o host definitivo (sem `www`) e que aponta para este site.
-2. Se o host oficial mudar, atualize o canonical, Open Graph, JSON-LD em `index.html`, `CANONICAL_HOME` em `src/App.tsx`, `public/sitemap.xml`, `public/robots.txt` e URLs na documentação. Use apenas URLs publicamente existentes; não crie entradas para fragmentos `#`.
-3. `robots.txt` não bloqueia CSS, JS ou imagens. Não use robots para remover URLs do índice; para uma página privada use autenticação e/ou `noindex`.
-4. `sitemap.xml` fica em `public/` e é copiado para a raiz publicada pelo Vite. Atualize quando forem criadas páginas URL independentes; use `lastmod` apenas se houver datas reais de alteração.
+O código e eventos estão preparados, mas `list_env_vars` da Vercel não encontrou variáveis para o projeto. Para ativar medição:
 
-## Google Search Console
+1. Crie uma propriedade GA4 e um fluxo Web, e use o Measurement ID público `G-...`.
+2. Configure `VITE_GA_MEASUREMENT_ID` no ambiente Production (e Preview, se desejado) da Vercel e faça um novo deployment. `.env.example` mostra a variável sem valor.
+3. Verifique Realtime/DebugView depois de aceitar o consentimento. O script só é carregado após consentimento explícito; recusa e preferências ficam disponíveis na interface.
 
-1. Crie uma propriedade de domínio para `graficanoreth.ao` no [Google Search Console](https://search.google.com/search-console/).
-2. Verifique a propriedade pelo método DNS (ou meta tag HTML). Para o método meta, insira no `<head>` de `index.html` exatamente a tag com o token entregue pelo Google; há um comentário no local adequado, mas nenhum token foi inventado.
-3. Após o site estar acessível publicamente em HTTPS, envie `https://graficanoreth.ao/sitemap.xml` em **Sitemaps**.
-4. Use **Inspeção de URL** na homepage publicada para verificar rastreabilidade/canonical e solicitar indexação quando apropriado.
-5. Consulte as secções de páginas, experiência e ações manuais ao longo do tempo. A submissão não garante indexação nem posicionamento.
+Eventos presentes no código: `page_view`, `click_whatsapp`, `click_contact`, `form_start`, `form_submit` e eventos condicionais para ligações específicas. Não são enviados nomes, telefones, emails ou texto livre do formulário. `form_submit` regista o pedido encaminhado para WhatsApp, não confirma que a mensagem foi efetivamente enviada.
 
-## Google Analytics 4
+## HTTPS, redirects e segurança
 
-1. Crie uma propriedade GA4 e um fluxo Web para o domínio publicado; copie o Measurement ID real (formato `G-...`).
-2. Na compilação de produção, configure `VITE_GA_MEASUREMENT_ID` com esse valor (por exemplo, variável de ambiente no hosting; localmente, copie `.env.example` para `.env.local`). Não inclua credenciais privadas — o Measurement ID é identificador público.
-3. Volte a compilar/republicar. Sem um ID válido a integração e o aviso de consentimento ficam inativos. Com ID configurado, o script oficial só é descarregado depois do consentimento explícito de análise; aceitação/recusa pode ser alterada pelo link de preferências no rodapé.
-4. Eventos implementados onde há interações reais: `page_view` (vista SPA), `click_whatsapp`, `click_contact` (telefone/email), `form_start` e `form_submit` (após validação local e preparação/abertura do WhatsApp). Não são enviados nomes, telefones, emails nem texto livre do formulário. O formulário não confirma que o visitante enviou efetivamente a mensagem no WhatsApp; o evento regista a intenção/pedido encaminhado, não entrega confirmada. Os eventos `click_course`, `click_inscription` e `social_media_click` só terão origem quando esses links existirem; atualmente o site não apresenta cursos, inscrições ou links sociais oficiais.
-5. Teste no GA4 DebugView/Realtime após aceitar consentimento. Não considere a integração ativa até configurar o ID e verificar os hits na propriedade.
+- O deployment está no domínio Vercel `grafica-north.vercel.app`, servido com TLS/HTTPS pela Vercel. HTTP→HTTPS e a normalização de URLs limpas são geridos pelo hosting/configuração da Vercel; `trailingSlash: false` evita variantes com barra final.
+- Não foi configurado redirect de `www` nem de `graficanoreth.ao`: esses domínios não aparecem associados ao projeto Vercel. Ligue e valide o domínio antes de criar redirects/canónicos para ele.
+- `vercel.json` aplica HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` e Content Security Policy. Confirme os cabeçalhos HTTP no deployment final, especialmente após qualquer integração nova.
+- `public/.htaccess` conserva os cabeçalhos/cache/compressão para alojamento Apache. Não controla o deployment Vercel.
 
-O aviso é uma proteção técnica de opt-in para Analytics; confirme a política de privacidade/cookies e obrigações legais aplicáveis ao público/mercado com a empresa. Não foi criado texto jurídico nem feita uma avaliação legal.
+## Validação antes de anunciar indexação
 
-## Imagem, desempenho e fontes
+Após publicar as alterações:
 
-As imagens JPEG usadas pelo projeto foram convertidas para WebP, ajustadas a no máximo 1920 px no lado maior e substituídas nas importações. Imagens secundárias têm `loading="lazy"` e dimensões; a foto principal da fachada é eager/default e tem prioridade alta. O build Vite produz JavaScript/CSS e imagens em ficheiros separados com nomes versionados, minifica para produção e desativa o embedding de imagens pequenas para manter lazy loading e cache independentes. A imagem principal da fachada é um WebP público, pré-carregado no HTML e marcado com prioridade alta; `.htaccess` permite cache longo para recursos versionados e compressão de tipos textuais quando os módulos Apache estiverem disponíveis. O site usa Google Fonts por import CSS; CSP permite o CSS/fontes desses hosts e a pré-conexão está no HTML. Publique sempre todo o conteúdo de `dist/`, incluindo a pasta `assets/`.
+- confirmar `/robots.txt`, `/sitemap.xml`, `/grafica-noreth-og.png` e a página inexistente no domínio final;
+- confirmar status HTTP 404 numa URL inexistente;
+- verificar em cada página title, description, canonical, Open Graph e JSON-LD no HTML recebido (sem depender de JavaScript);
+- verificar os cabeçalhos de segurança e o redirecionamento HTTP→HTTPS no deployment;
+- validar os dados estruturados no [Schema Markup Validator](https://validator.schema.org/) e testar desempenho no PageSpeed Insights.
 
-Confira Core Web Vitals no PageSpeed Insights com o domínio publicado. Resultado local de build não substitui medições de rede/dispositivo reais.
-
-## HTTPS, redirecionamentos e cabeçalhos
-
-- Em Apache, publique os ficheiros de `dist/` incluindo o `.htaccess` (habilite `AllowOverride` e módulos `headers`, `expires`, `deflate`). Teste que uma URL inexistente recebe status HTTP `404` com o conteúdo de `/404.html`; o ficheiro sozinho não define o status.
-- Configure certificado TLS válido no hosting/CDN. Só depois confirme que domínio principal e subdomínios usam HTTPS e configure redirecionamento HTTP→HTTPS e `www`→host principal no painel do hosting/CDN. As regras estão intencionalmente não ativadas por não se ter verificado certificado, alias ou host definitivo.
-- HSTS está documentado como linha comentada no `.htaccess`; só o ative depois de validar HTTPS em todos os hosts/subdomínios necessários. Não adicione `includeSubDomains`/`preload` sem auditoria específica.
-- `.htaccess` define CSP para os bundles externos do Vite, Google Fonts e GA4, mais `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` e `frame-ancestors 'none'`. Faça um teste no ambiente real: CSP pode precisar de ajuste se o hosting adicionar outros recursos/integradores. Cabeçalhos só são enviados se Apache/mod_headers estiver ativo; em Netlify/Vercel/CDN, configure cabeçalhos equivalentes na respetiva plataforma.
-- Não foi possível confirmar HTTPS, redirecionamentos ou cabeçalhos do hosting nesta etapa.
-
-## Página 404 e validação
-
-`public/404.html` funciona como página estática; `src/pages/NotFound.tsx` trata rotas hash desconhecidas dentro da aplicação e aplica `noindex`. O status HTTP 404 em URL que não existe depende da configuração do servidor; em Apache, `ErrorDocument 404 /404.html`. Como a navegação atual é por hash, uma rota desconhecida dentro do próprio shell já carregado continua naturalmente com o status da resposta inicial, tipicamente 200; para status 404 por rota é necessário URL real + regras do hosting.
-
-Antes de considerar publicação validada:
-
-- abrir `/robots.txt`, `/sitemap.xml`, `/grafica-noreth-og.png` e `/404.html` no domínio final;
-- confirmar 404 real com `curl -I https://graficanoreth.ao/nao-existe` e testar links internos;
-- conferir canonicals, metadados renderizados, JSON-LD e imagem social no HTML final;
-- validar JSON-LD no [Schema Markup Validator](https://validator.schema.org/) e, quando aplicável, no [Rich Results Test](https://search.google.com/test/rich-results/);
-- testar Search Console, PageSpeed Insights/Lighthouse e TLS/SSL Labs no domínio de produção.
-
-A integração Search Console, indexação, GA4, HTTPS, cabeçalhos do servidor e status 404 não podem ser declarados concluídos até concluir e verificar os passos externos acima.
+Os passos de Search Console/indexação e GA4 só devem ser considerados concluídos depois da verificação externa e do teste real descritos acima.

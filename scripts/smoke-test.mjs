@@ -3,6 +3,7 @@
  * todas as rotas, registando erros de runtime e validando os links de
  * WhatsApp e o número de destino.
  */
+import { readFile } from "node:fs/promises";
 import { Window } from "happy-dom";
 import React from "react";
 import { createServer } from "vite";
@@ -59,7 +60,7 @@ async function main() {
     document.head.appendChild(robotsMeta);
     const canonical = document.createElement("link");
     canonical.rel = "canonical";
-    canonical.href = "https://graficanoreth.ao/";
+    canonical.href = "https://grafica-north.vercel.app/";
     document.head.appendChild(canonical);
     const container = document.createElement("div");
     container.id = "root";
@@ -71,7 +72,7 @@ async function main() {
 
   for (const route of ROUTES) {
     const link = [...document.querySelectorAll("header nav a")].find(
-      (a) => a.getAttribute("href") === `#${route}`,
+      (a) => a.getAttribute("href") === route,
     );
     if (!link) throw new Error(`Nav link nao encontrado para ${route}`);
     link.click();
@@ -82,7 +83,7 @@ async function main() {
     const telLinks = [...document.querySelectorAll('a[href^="tel:"]')];
     results.push({
       route,
-      hash: window.location.hash,
+      path: window.location.pathname,
       title: document.title,
       chars: html.length,
       h1: document.querySelector("h1")?.textContent?.slice(0, 40),
@@ -97,7 +98,14 @@ async function main() {
     });
   }
 
-  window.history.pushState(null, "", "#/rota-inexistente");
+  window.history.pushState(null, "", "/#/equipamentos");
+  window.dispatchEvent(new window.PopStateEvent("popstate", { state: null }));
+  await wait(180);
+  if (window.location.pathname !== "/equipamentos") {
+    throw new Error(`A rota hash antiga não foi redirecionada: ${window.location.href}`);
+  }
+
+  window.history.pushState(null, "", "/rota-inexistente");
   window.dispatchEvent(new window.PopStateEvent("popstate", { state: null }));
   await wait(220);
   const missingTitle = document.title;
@@ -108,7 +116,7 @@ async function main() {
 
   // Teste de pesquisa no catálogo
   [...document.querySelectorAll("header nav a")].find(
-    (a) => a.getAttribute("href") === "#/equipamentos",
+    (a) => a.getAttribute("href") === "/equipamentos",
   )?.click();
   await wait(300);
   const search = document.getElementById("pesquisa-equipamentos");
@@ -132,6 +140,22 @@ async function main() {
     await wait(120);
   }
   const menuOpen = document.getElementById("menu-mobile")?.hasAttribute("hidden") === false;
+
+  for (const route of ROUTES) {
+    const outputFile = route === "/" ? "index.html" : `${route.slice(1)}.html`;
+    const staticHtml = await readFile(new URL(`../dist/${outputFile}`, import.meta.url), "utf8");
+    const expectedTitle = results.find((result) => result.path === route)?.title;
+    if (!expectedTitle || !staticHtml.includes(`<title>${expectedTitle}</title>`)) {
+      throw new Error(`HTML estático sem título correto para ${route}`);
+    }
+    if (!staticHtml.includes(`rel="canonical" href="https://grafica-north.vercel.app${route === "/" ? "/" : route}"`)) {
+      throw new Error(`HTML estático sem canonical correto para ${route}`);
+    }
+  }
+  const sitemap = await readFile(new URL("../dist/sitemap.xml", import.meta.url), "utf8");
+  if (ROUTES.some((route) => !sitemap.includes(`https://grafica-north.vercel.app${route === "/" ? "/" : route}`))) {
+    throw new Error("Sitemap estático não inclui todas as rotas públicas.");
+  }
 
   if (new Set(results.map((result) => result.title)).size !== ROUTES.length) {
     throw new Error("Os titles SEO das rotas não são únicos.");

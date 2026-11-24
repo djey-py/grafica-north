@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import seoPages from "./data/seo-pages.json";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -13,40 +14,11 @@ import NotFound from "./pages/NotFound";
 import AnalyticsConsent from "./components/AnalyticsConsent";
 import { trackEvent, trackPageView } from "./utils/analytics";
 
-const SEO: Record<string, { title: string; description: string }> = {
-  "/": {
-    title: "Gráfica Noreth | Impressão e Serviços Gráficos em Luanda",
-    description:
-      "Serviços gráficos, impressão e marketing em Luanda. Materiais gráficos, consumíveis, equipamentos e produtos personalizados. Peça um orçamento.",
-  },
-  "/equipamentos": {
-    title: "Equipamentos gráficos e de impressão | Gráfica Noreth",
-    description:
-      "Veja equipamentos gráficos: impressoras, laminadoras, prensas térmicas, gravação a laser e fotocopiadoras. Peça informações e consulte a disponibilidade.",
-  },
-  "/personalizados": {
-    title: "Produtos personalizados e brindes | Gráfica Noreth",
-    description:
-      "T-shirts, polos, canecas, porta-chaves e crachás personalizados. Conheça opções de impressão, sublimação, DTF, gravação a laser e bordado.",
-  },
-  "/solucoes": {
-    title: "Soluções para negócios gráficos | Gráfica Noreth",
-    description:
-      "Equipamentos e soluções para impressão, produção gráfica, publicidade, comunicação visual, brindes e identificação corporativa. Fale com um especialista.",
-  },
-  "/sobre": {
-    title: "Sobre a Gráfica Noreth | Serviços e materiais gráficos",
-    description:
-      "Conheça a Gráfica Noreth — Prestação de Serviços & Comércio, Lda. Serviços gráficos, impressão, marketing e venda de materiais em Luanda, Angola.",
-  },
-  "/contactos": {
-    title: "Contactos | Gráfica Noreth — Impressão e Marketing em Luanda",
-    description:
-      "Contacte a Gráfica Noreth por telefone, WhatsApp ou email. Atendimento das 07h30 às 17h30. Estamos no Golf2, Quintalão do Petro, em Luanda.",
-  },
-};
-
-const CANONICAL_HOME = "https://graficanoreth.ao/";
+const SEO = Object.fromEntries(seoPages.map((page) => [page.path, page])) as Record<
+  string,
+  { title: string; description: string }
+>;
+const SITE_ORIGIN = "https://grafica-north.vercel.app";
 
 function setMeta(selector: string, attribute: string, value: string) {
   const element = document.querySelector(selector);
@@ -96,6 +68,18 @@ function TrackInteractions() {
   return null;
 }
 
+function LegacyHashRouteRedirect() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash.startsWith("#/")) return;
+    navigate(`${location.hash.slice(1)}${location.search}`, { replace: true });
+  }, [location.hash, location.pathname, location.search, navigate]);
+
+  return null;
+}
+
 function RouteEffects() {
   const location = useLocation();
 
@@ -109,7 +93,8 @@ function RouteEffects() {
     setMeta('meta[name="robots"]', "content", isNotFound ? "noindex,follow" : "index,follow,max-image-preview:large");
     setMeta('meta[property="og:title"]', "content", title);
     setMeta('meta[property="og:description"]', "content", description);
-    setMeta('meta[property="og:url"]', "content", CANONICAL_HOME);
+    const canonicalUrl = new URL(location.pathname, SITE_ORIGIN).href;
+    setMeta('meta[property="og:url"]', "content", canonicalUrl);
     setMeta('meta[name="twitter:title"]', "content", title);
     setMeta('meta[name="twitter:description"]', "content", description);
     let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
@@ -121,7 +106,7 @@ function RouteEffects() {
         canonical.rel = "canonical";
         document.head.appendChild(canonical);
       }
-      canonical.href = CANONICAL_HOME;
+      canonical.href = canonicalUrl;
     }
     trackPageView(title);
 
@@ -143,7 +128,8 @@ function RouteEffects() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
+      <LegacyHashRouteRedirect />
       <RouteEffects />
       <TrackInteractions />
       <button
@@ -177,6 +163,6 @@ export default function App() {
 
       <WhatsAppButton />
       <AnalyticsConsent />
-    </HashRouter>
+    </BrowserRouter>
   );
 }

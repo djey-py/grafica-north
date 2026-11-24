@@ -58,7 +58,7 @@ export function trackPageView(title = document.title): void {
   trackEvent("page_view", {
     page_title: title,
     page_location: pageLocation,
-    page_path: `${window.location.pathname}${window.location.hash}`,
+    page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
   });
 }
 
