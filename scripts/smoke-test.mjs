@@ -100,7 +100,7 @@ async function main() {
 
   window.history.pushState(null, "", "/#/equipamentos");
   window.dispatchEvent(new window.PopStateEvent("popstate", { state: null }));
-  await wait(180);
+  await wait(400);
   if (window.location.pathname !== "/equipamentos") {
     throw new Error(`A rota hash antiga não foi redirecionada: ${window.location.href}`);
   }
