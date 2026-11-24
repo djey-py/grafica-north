@@ -187,6 +187,15 @@ async function main() {
     if (!staticHtml.includes(`rel="canonical" href="https://grafica-north.vercel.app${route === "/" ? "/" : route}"`)) {
       throw new Error(`HTML estático sem canonical correto para ${route}`);
     }
+    if (route === "/") {
+      const favicon = await readFile(new URL("../dist/favicon.png", import.meta.url));
+      if (!staticHtml.includes('href="/favicon.png"') || favicon.length < 500) {
+        throw new Error("O favicon não usa o logótipo da Gráfica Noreth.");
+      }
+      if (!staticHtml.includes('"logo": "https://grafica-north.vercel.app/logo-grafica-noreth.png"')) {
+        throw new Error("Os dados estruturados não apontam para o logótipo oficial.");
+      }
+    }
   }
   const sitemap = await readFile(new URL("../dist/sitemap.xml", import.meta.url), "utf8");
   if (ROUTES.some((route) => !sitemap.includes(`https://grafica-north.vercel.app${route === "/" ? "/" : route}`))) {
