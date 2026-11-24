@@ -86,6 +86,18 @@ async function main() {
     link.click();
     await wait(350);
 
+    if (route === "/equipamentos") {
+      const promotionalPosters = document.querySelectorAll(
+        'article img[alt*="cartaz promocional"]',
+      );
+      if (promotionalPosters.length < 8) {
+        throw new Error("Os cartazes promocionais das máquinas não aparecem no catálogo.");
+      }
+      if ([...promotionalPosters].some((image) => !image.className.includes("object-contain"))) {
+        throw new Error("Um cartaz promocional está a ser cortado no catálogo.");
+      }
+    }
+
     const html = document.body.innerHTML;
     const waLinks = [...document.querySelectorAll('a[href*="wa.me"]')];
     const telLinks = [...document.querySelectorAll('a[href^="tel:"]')];

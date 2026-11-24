@@ -31,6 +31,7 @@ export default function ProductCard({
   showCatalogLink = true,
 }: ProductCardProps) {
   const category = CATEGORY_BY_ID[categoryId];
+  const isPromotionalPoster = image?.startsWith("equipment") ?? false;
   const location = useLocation();
   const isCatalogPage = location.pathname === "/equipamentos";
 
@@ -40,12 +41,16 @@ export default function ProductCard({
         {image ? (
           <img
             src={IMAGES[image]}
-            alt={`${name} — fotografia ilustrativa da tipologia de equipamento`}
+            alt={
+              isPromotionalPoster
+                ? `${name} — cartaz promocional fornecido pela Gráfica Noreth`
+                : `${name} — fotografia ilustrativa da tipologia de equipamento`
+            }
             loading="lazy"
             decoding="async"
             width={1000}
-            height={667}
-            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+            height={1000}
+            className={`h-full w-full ${isPromotionalPoster ? "object-contain" : "object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"}`}
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-panel via-ink-soft to-[#0a1330]">
@@ -57,11 +62,15 @@ export default function ProductCard({
             </span>
           </div>
         )}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent opacity-80"
-        />
-        <span className="img-tag">Imagem ilustrativa</span>
+        {!isPromotionalPoster ? (
+          <>
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent opacity-80"
+            />
+            <span className="img-tag">Imagem ilustrativa</span>
+          </>
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">

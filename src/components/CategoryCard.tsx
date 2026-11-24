@@ -92,30 +92,39 @@ export default function CategoryCard({ category, onSelect, active = false }: Cat
 /** Imagem ou placeholder do cartão de categoria. */
 function Media({ category }: { category: Category }) {
   const Icon = category.icon;
+  const isPromotionalPoster = category.image?.startsWith("equipment") ?? false;
   return (
     <>
       {category.image ? (
         <img
           src={IMAGES[category.image]}
-          alt={`${category.name} — imagem ilustrativa`}
+          alt={
+            isPromotionalPoster
+              ? `${category.name} — cartaz promocional fornecido pela Gráfica Noreth`
+              : `${category.name} — imagem ilustrativa`
+          }
           loading="lazy"
           decoding="async"
           width={1000}
-          height={667}
-          className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
+          height={1000}
+          className={`h-full w-full ${isPromotionalPoster ? "object-contain" : "object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"}`}
         />
       ) : (
         <span className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0d1730] via-[#0b1224] to-[#101a3a]">
           <Icon className="h-12 w-12 text-aqua/70" aria-hidden="true" />
         </span>
       )}
-      <span
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent"
-      />
-      <span className="absolute top-3.5 left-3.5 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/12 bg-ink/70 text-aqua backdrop-blur">
-        <Icon className="h-4.5 w-4.5" aria-hidden="true" />
-      </span>
+      {!isPromotionalPoster ? (
+        <>
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent"
+          />
+          <span className="absolute top-3.5 left-3.5 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/12 bg-ink/70 text-aqua backdrop-blur">
+            <Icon className="h-4.5 w-4.5" aria-hidden="true" />
+          </span>
+        </>
+      ) : null}
     </>
   );
 }
