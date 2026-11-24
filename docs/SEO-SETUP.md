@@ -8,7 +8,7 @@ A configuração foi adaptada ao website existente da Gráfica Noreth. O domíni
 - `src/data/seo-pages.json` é a fonte única dos títulos e descrições de cada página.
 - O plugin em `vite.config.ts` gera HTML estático por página após o build. Cada documento recebe title, description, canonical, Open Graph e `WebPage` JSON-LD próprios; `vercel.json` publica os documentos com URLs limpas.
 - `public/robots.txt` permite rastreio e anuncia o sitemap. `public/sitemap.xml` lista apenas as seis rotas reais.
-- `public/grafica-noreth-og.png` (1200 × 630) é a imagem Open Graph/Twitter; `public/favicon.png` é o favicon derivado do logótipo oficial da empresa.
+- `public/grafica-noreth-share.jpg` (1200 × 630) é a imagem Open Graph/Twitter; `public/favicon.png` é o favicon derivado do logótipo oficial da empresa.
 - As imagens fotográficas estão otimizadas em WebP, com texto alternativo e dimensões; a imagem principal tem prioridade de carregamento.
 - JSON-LD descreve a empresa como `LocalBusiness`, com a morada confirmada: Golf2, Bairro Anel de Ouro, por detrás do antigo Edifício da Coca-Cola, junto ao Colégio Inácio Maria.
 - `public/404.html` fornece a página de erro estática para Vercel; a aplicação mantém também uma vista 404 para navegação interna. URLs desconhecidas devem ser testadas no deployment para confirmar o status HTTP 404.
@@ -45,7 +45,7 @@ Eventos presentes no código: `page_view`, `click_whatsapp`, `click_contact`, `f
 
 Após publicar as alterações:
 
-- confirmar `/robots.txt`, `/sitemap.xml`, `/grafica-noreth-og.png` e a página inexistente no domínio final;
+- confirmar `/robots.txt`, `/sitemap.xml`, `/grafica-noreth-share.jpg` e a página inexistente no domínio final;
 - confirmar status HTTP 404 numa URL inexistente;
 - verificar em cada página title, description, canonical, Open Graph e JSON-LD no HTML recebido (sem depender de JavaScript);
 - verificar os cabeçalhos de segurança e o redirecionamento HTTP→HTTPS no deployment;
