@@ -26,7 +26,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 mt-8 border-t border-line/80 bg-ink-soft/60">
       <div className="shell py-14 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-8">
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-[1.2fr_0.72fr_0.92fr_0.92fr_1.25fr] xl:gap-x-7">
           <div className="max-w-sm">
             <Link to="/" aria-label="Gráfica Noreth — Página inicial" className="inline-block">
               <Logo />
