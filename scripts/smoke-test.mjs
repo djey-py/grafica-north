@@ -20,6 +20,8 @@ globalThis.HTMLFormElement = window.HTMLFormElement;
 globalThis.HTMLInputElement = window.HTMLInputElement;
 globalThis.HTMLAnchorElement = window.HTMLAnchorElement;
 globalThis.HTMLButtonElement = window.HTMLButtonElement;
+globalThis.HTMLSlotElement = window.HTMLSlotElement;
+globalThis.ResizeObserver = window.ResizeObserver;
 globalThis.location = window.location;
 globalThis.history = window.history;
 globalThis.CustomEvent = window.CustomEvent;
@@ -68,6 +70,12 @@ async function main() {
     root = createRoot(container);
     root.render(React.createElement(App));
     await wait(400);
+    if (document.querySelectorAll(".hero-progress-button").length !== 5) {
+      throw new Error("O slider da homepage não apresenta os cinco serviços previstos.");
+    }
+    if (!document.querySelector('img[src="/images/storefront-noreth.webp"]')) {
+      throw new Error("A fotografia real da entrada da Gráfica Noreth não foi encontrada na homepage.");
+    }
   const results = [];
 
   for (const route of ROUTES) {

@@ -1,119 +1,210 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BadgeCheck, Gift, MapPin, Printer, Sparkles } from "lucide-react";
-import heroProductionImage from "../assets/images/hero-graphic-production.webp";
+import { A11y, Autoplay, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
+import { ArrowDownRight, ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import "swiper/css";
 import { MESSAGES } from "../utils/whatsapp";
 import WhatsAppLink from "./WhatsAppLink";
-import Reveal from "./Reveal";
 
-const SERVICE_MARKERS = [
-  { icon: Printer, label: "Impressão profissional" },
-  { icon: Gift, label: "Personalização" },
-  { icon: BadgeCheck, label: "Equipamentos gráficos" },
-];
+import printingImage from "../assets/images/hero/printing.webp";
+import giftsImage from "../assets/images/hero/gifts.webp";
+import apparelImage from "../assets/images/hero/apparel.webp";
+import equipmentImage from "../assets/images/hero/equipment.webp";
+import visualImage from "../assets/images/hero/visual.webp";
+
+const SLIDES = [
+  {
+    id: "impressao",
+    eyebrow: "Produção gráfica",
+    title: "Impressão profissional",
+    description:
+      "Dê forma às suas ideias com materiais impressos para apresentar a sua marca com qualidade e confiança.",
+    phrase: "A qualidade da sua marca, em cada detalhe.",
+    image: printingImage,
+    imageAlt: "Materiais impressos e acabamentos gráficos numa gráfica profissional",
+    cta: "Falar sobre impressão",
+    to: "/solucoes",
+  },
+  {
+    id: "brindes",
+    eyebrow: "A sua marca em todo o lado",
+    title: "Brindes personalizados",
+    description:
+      "Canecas, garrafas, cadernos e outros artigos para oferecer, promover a sua empresa e criar boas recordações.",
+    phrase: "Ideias que ficam com as pessoas.",
+    image: giftsImage,
+    imageAlt: "Seleção de brindes promocionais como canecas, garrafa, caderno e saco de tecido",
+    cta: "Ver produtos personalizados",
+    to: "/personalizados",
+  },
+  {
+    id: "vestuario",
+    eyebrow: "Identidade para a sua equipa",
+    title: "Vestuário personalizado",
+    description:
+      "Vista a identidade da sua empresa com opções de vestuário personalizável para equipas, eventos e negócios.",
+    phrase: "A sua equipa, com uma identidade única.",
+    image: apparelImage,
+    imageAlt: "Casaco, camisolas e polos lisos disponíveis para personalização",
+    cta: "Explorar personalização",
+    to: "/personalizados",
+  },
+  {
+    id: "equipamentos",
+    eyebrow: "Produção e acabamento",
+    title: "Equipamentos gráficos",
+    description:
+      "Encontre soluções profissionais de impressão, acabamento e personalização para dar capacidade ao seu negócio.",
+    phrase: "Equipamento certo para produzir mais.",
+    image: equipmentImage,
+    imageAlt: "Impressora gráfica profissional de grande formato num espaço de produção",
+    cta: "Explorar equipamentos",
+    to: "/equipamentos",
+  },
+  {
+    id: "comunicacao-visual",
+    eyebrow: "Destaque para a sua marca",
+    title: "Comunicação visual",
+    description:
+      "Leve a sua mensagem mais longe com soluções visuais para promover a sua marca e destacar o seu espaço.",
+    phrase: "Faça-se notar. Seja lembrado.",
+    image: visualImage,
+    imageAlt: "Exemplos de materiais gráficos de comunicação visual em tons azuis numa sala de exposição",
+    cta: "Pedir uma solução à medida",
+    to: "/solucoes",
+  },
+] as const;
 
 export default function Hero() {
+  const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(media.matches);
+    updatePreference();
+    media.addEventListener("change", updatePreference);
+    return () => media.removeEventListener("change", updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (!swiper || !swiper.autoplay) return;
+    if (reducedMotion) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
+  }, [reducedMotion, swiper]);
+
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/[0.06]" aria-labelledby="hero-title">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-52 left-[15%] h-[34rem] w-[34rem] rounded-full bg-electric/[0.16] blur-[150px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-[28%] -right-48 h-[36rem] w-[36rem] rounded-full bg-aqua/[0.12] blur-[160px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aqua/40 to-transparent"
-      />
+    <section className="hero-slider-section relative isolate overflow-hidden border-b border-white/[0.06]" aria-label="Serviços da Gráfica Noreth">
+      <div aria-hidden="true" className="pointer-events-none absolute -top-48 left-[12%] h-[32rem] w-[32rem] rounded-full bg-electric/[0.16] blur-[150px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute top-[20%] -right-48 h-[34rem] w-[34rem] rounded-full bg-aqua/[0.1] blur-[160px]" />
 
-      <div className="shell relative py-12 sm:py-16 lg:py-[4.5rem]">
-        <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 xl:gap-20">
-          <div>
-            <Reveal>
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-aqua/20 bg-aqua/[0.07] px-4 py-2 text-[0.65rem] font-bold tracking-[0.17em] text-aqua uppercase backdrop-blur">
-                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                Produção gráfica · Luanda
-              </span>
-            </Reveal>
-
-            <Reveal delay={70}>
-              <h1
-                id="hero-title"
-                className="mt-7 max-w-[12ch] text-[clamp(3rem,7.5vw,6.35rem)] leading-[0.92] font-extrabold tracking-[-0.065em] text-white"
-              >
-                A sua marca merece ir{" "}
-                <span className="gradient-text">mais longe.</span>
-              </h1>
-            </Reveal>
-          </div>
-
-          <Reveal delay={150} className="flex max-w-xl flex-col items-start gap-6 lg:ml-auto lg:pb-2">
-            <p className="text-[0.98rem] leading-[1.8] text-muted sm:text-lg">
-              Da impressão profissional à personalização e aos equipamentos gráficos —
-              transformamos ideias em materiais que fazem a sua marca destacar-se.
-            </p>
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-              <WhatsAppLink message={MESSAGES.geral} size="lg">
-                Pedir orçamento
-              </WhatsAppLink>
-              <Link to="/equipamentos" className="btn btn-ghost min-h-[54px] px-6 text-base">
-                Explorar equipamentos
-                <ArrowRight className="h-[1.05em] w-[1.05em]" aria-hidden="true" />
-              </Link>
-            </div>
-            <p className="text-xs font-medium text-muted/80">
-              Atendimento direto com a equipa da Gráfica Noreth.
-            </p>
-          </Reveal>
+      <div className="shell relative py-8 sm:py-10 lg:py-14">
+        <div className="mb-5 flex items-center justify-between gap-4 sm:mb-7">
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-aqua/20 bg-aqua/[0.07] px-3.5 py-2 text-[0.62rem] font-bold tracking-[0.16em] text-aqua uppercase sm:px-4 sm:text-[0.68rem]">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            Gráfica Noreth <span className="text-white/35">/</span> Serviços
+          </span>
+          <span className="hidden text-xs font-semibold text-muted sm:inline">Luanda, Angola</span>
         </div>
 
-        <Reveal delay={180} className="mt-10 sm:mt-12 lg:mt-14">
-          <figure className="group relative isolate aspect-[1.18] overflow-hidden rounded-[1.65rem] border border-white/10 bg-[#07101d] shadow-[0_36px_110px_-48px_rgba(8,103,232,0.62)] sm:aspect-[1.7] sm:rounded-[2rem] lg:aspect-[2.12] lg:rounded-[2.5rem]">
-            <img
-              src={heroProductionImage}
-              alt="Composição de produção gráfica com impressora profissional, cartões, caneca e vestuário personalizado"
-              width={1312}
-              height={816}
-              fetchPriority="high"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover object-[66%_center] motion-safe:transition-transform motion-safe:duration-1000 motion-safe:ease-out motion-safe:group-hover:scale-[1.025] sm:object-[58%_center]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,20,0.68)_0%,rgba(5,9,20,0.2)_38%,transparent_72%),linear-gradient(0deg,rgba(5,9,20,0.86)_0%,rgba(5,9,20,0.08)_38%,transparent_72%)]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 ring-1 ring-inset ring-white/[0.08]"
-            />
+        <div className="hero-swiper-shell overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#080f20] shadow-[0_36px_110px_-48px_rgba(8,103,232,0.62)] sm:rounded-[1.8rem] lg:rounded-[2.1rem]">
+          <Swiper
+            modules={[Autoplay, Keyboard, A11y]}
+            loop
+            speed={700}
+            autoplay={{ delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            a11y={{
+              prevSlideMessage: "Serviço anterior",
+              nextSlideMessage: "Serviço seguinte",
+              slideLabelMessage: "{{index}} de {{slidesLength}}",
+            }}
+            onSwiper={setSwiper}
+            onSlideChange={(instance) => setActiveIndex(instance.realIndex)}
+            className="hero-swiper"
+          >
+            {SLIDES.map((slide, index) => (
+              <SwiperSlide key={slide.id}>
+                <article className="hero-slide grid min-h-0 lg:min-h-[510px] lg:grid-cols-[0.72fr_1.28fr]" aria-labelledby={`hero-title-${slide.id}`}>
+                  <div className="hero-slide-copy relative z-10 order-2 flex flex-col items-start justify-center px-5 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6 lg:order-1 lg:px-10 lg:py-12 xl:px-14">
+                    <span className="text-[0.64rem] font-bold tracking-[0.18em] text-aqua uppercase sm:text-xs">{slide.eyebrow}</span>
+                    <h1 id={`hero-title-${slide.id}`} className="mt-3 max-w-[13ch] text-[clamp(2rem,5vw,3.65rem)] leading-[1.02] font-extrabold tracking-[-0.055em] text-white">
+                      {slide.title}
+                    </h1>
+                    <p className="mt-4 max-w-md text-sm leading-[1.75] text-muted sm:mt-5 sm:text-base">{slide.description}</p>
+                    <div className="mt-6 flex w-full flex-col gap-3 sm:mt-7 sm:w-auto sm:flex-row sm:flex-wrap">
+                      <Link to={slide.to} className="btn btn-primary min-h-[50px] px-5 text-sm sm:px-6 sm:text-[0.92rem]">
+                        {slide.cta}
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                      {index === 0 || index === 4 ? (
+                        <WhatsAppLink message={index === 0 ? MESSAGES.geral : MESSAGES.outrasNecessidades} variant="ghost" size="sm" className="min-h-[50px]">
+                          Pedir orçamento
+                        </WhatsAppLink>
+                      ) : null}
+                    </div>
+                  </div>
 
-            <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 sm:p-6 lg:p-8">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-ink/45 px-3.5 py-2 text-[0.6rem] font-bold tracking-[0.16em] text-white/90 uppercase backdrop-blur-md sm:text-xs">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_12px_rgba(32,185,242,0.9)]" />
-                Do conceito ao produto final
-              </span>
-              <span className="hidden rounded-full border border-white/15 bg-ink/45 px-3.5 py-2 text-[0.6rem] font-bold tracking-[0.16em] text-white/75 uppercase backdrop-blur-md sm:inline-flex sm:text-xs">
-                Impressão · Personalização · Equipamentos
-              </span>
-            </div>
+                  <figure className="hero-slide-visual group relative order-1 m-0 min-h-[240px] overflow-hidden bg-[#07101d] sm:min-h-[320px] lg:order-2 lg:min-h-[510px]">
+                    <img
+                      src={slide.image}
+                      alt={slide.imageAlt}
+                      width={1200}
+                      height={800}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="hero-slide-image absolute inset-0 h-full w-full object-cover"
+                    />
+                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#050914]/70 via-transparent to-[#050914]/10 lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[#050914]/20" />
+                    <figcaption className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3 sm:bottom-6 sm:left-6 sm:right-6 lg:bottom-8 lg:left-8 lg:right-8">
+                      <span className="max-w-[min(88%,24rem)] rounded-xl border border-aqua/35 bg-[#0867e8]/90 px-4 py-3 text-xs leading-snug font-bold text-white shadow-[0_12px_40px_-16px_rgba(8,103,232,0.95)] backdrop-blur-md sm:px-5 sm:py-3.5 sm:text-sm">
+                        {slide.phrase}
+                      </span>
+                      <ArrowDownRight className="hidden h-8 w-8 shrink-0 text-white/70 drop-shadow sm:block" aria-hidden="true" />
+                    </figcaption>
+                  </figure>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col gap-4 border-t border-white/10 bg-ink/35 px-4 py-4 backdrop-blur-md sm:flex-row sm:items-end sm:justify-between sm:px-6 sm:py-5 lg:px-8 lg:py-6">
-              <div className="flex flex-wrap gap-x-4 gap-y-2 sm:gap-x-6">
-                {SERVICE_MARKERS.map(({ icon: Icon, label }) => (
-                  <span key={label} className="inline-flex items-center gap-2 text-[0.68rem] font-semibold text-white/85 sm:text-xs">
-                    <Icon className="h-3.5 w-3.5 text-aqua" aria-hidden="true" />
-                    {label}
-                  </span>
-                ))}
-              </div>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold text-white/75 sm:shrink-0 sm:text-sm">
-                <MapPin className="h-4 w-4 text-aqua" aria-hidden="true" />
-                Luanda, Angola
-              </span>
-            </figcaption>
-          </figure>
-        </Reveal>
+        <div className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-5" aria-label="Controlos do slider">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-2.5" aria-label="Progresso dos serviços">
+            {SLIDES.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => swiper?.slideToLoop(index)}
+                aria-label={`Mostrar serviço ${index + 1}: ${slide.title}`}
+                aria-current={activeIndex === index ? "true" : undefined}
+                className="hero-progress-button group h-8 min-w-0 flex-1 cursor-pointer py-3"
+              >
+                <span className="hero-progress-track block h-[3px] overflow-hidden rounded-full bg-white/15 transition-colors group-hover:bg-white/30">
+                  <span className={`hero-progress-fill block h-full rounded-full bg-gradient-to-r from-electric to-aqua ${activeIndex === index && !reducedMotion ? "is-running" : ""}`} />
+                </span>
+              </button>
+            ))}
+          </div>
+          <span className="min-w-[3.3rem] text-right font-mono text-xs font-semibold tracking-wider text-white" aria-live="polite" aria-atomic="true">
+            {String(activeIndex + 1).padStart(2, "0")}<span className="mx-1 text-muted/55">/</span>{String(SLIDES.length).padStart(2, "0")}
+          </span>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={() => swiper?.slidePrev()} className="hero-control-button" aria-label="Serviço anterior">
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => swiper?.slideNext()} className="hero-control-button" aria-label="Serviço seguinte">
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
