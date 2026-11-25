@@ -146,6 +146,21 @@ async function main() {
       if (realWorkPhotos.length < 6) {
         throw new Error("As fotografias reais de vestuário e brindes não aparecem no catálogo.");
       }
+      const productCards = [...document.querySelectorAll(".personalized-product-card")];
+      if (
+        productCards.length !== 15 ||
+        productCards.some((card) => !card.querySelector(".personalized-card-pricing"))
+      ) {
+        throw new Error("Todos os cartões de produtos personalizados devem apresentar preço ou indicação de consulta.");
+      }
+      const personalizedPrices = productCards.map((card) => card.textContent ?? "").join(" ");
+      const expectedPrices = [
+        "1.000 Kz", "4.000 Kz", "3.000 Kz", "3.500 Kz", "6.000 Kz", "8.500 Kz",
+        "18.000 Kz", "16.500 Kz", "3.000 Kz", "6.500 Kz", "10.000 Kz", "1.500 Kz",
+      ];
+      if (expectedPrices.some((price) => !personalizedPrices.includes(price))) {
+        throw new Error("Falta um dos preços fornecidos para os produtos personalizados.");
+      }
     }
 
     if (route === "/equipamentos") {

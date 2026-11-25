@@ -118,9 +118,12 @@ export default function Home() {
               opções de materiais, formatos e técnicas de personalização, o porta-chaves
               coloca a sua marca no dia-a-dia de quem o recebe.
             </p>
+            <div className="personalized-card-pricing mt-4 max-w-xs">
+              <span className="personalized-card-pricing-label">Preço</span>
+              <strong className="personalized-card-price">1.000 Kz</strong>
+            </div>
             <p className="mt-3 text-[0.875rem] text-muted">
-              As opções, quantidades, materiais e preços são confirmados diretamente com a
-              Gráfica Noreth.
+              Materiais, formatos, técnicas e quantidades podem variar conforme o pedido.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <WhatsAppLink message={MESSAGES.portaChaves}>
@@ -153,7 +156,7 @@ export default function Home() {
                   aria-hidden="true"
                   className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"
                 />
-                <figcaption className="img-tag">Imagem ilustrativa</figcaption>
+                <figcaption className="img-tag">Trabalho real da Gráfica Noreth</figcaption>
               </figure>
             </div>
           </Reveal>

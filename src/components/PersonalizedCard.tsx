@@ -10,6 +10,8 @@ interface PersonalizedCardProps {
   description: string;
   image: ImageKey | null;
   gradient: string;
+  price?: string;
+  priceOptions?: { label: string; price: string }[];
   featured?: boolean;
 }
 
@@ -24,6 +26,8 @@ export default function PersonalizedCard({
   description,
   image,
   gradient,
+  price,
+  priceOptions,
   featured = false,
 }: PersonalizedCardProps) {
   const isRealWorkSample = image?.startsWith("workSample") || image === "featuredKeychains";
@@ -32,7 +36,7 @@ export default function PersonalizedCard({
     <article
       id={id}
       className={cn(
-        "card card-hover group flex h-full flex-col",
+        "card card-hover group flex h-full flex-col personalized-product-card",
         featured && "ring-1 ring-aqua/35",
       )}
     >
@@ -87,6 +91,25 @@ export default function PersonalizedCard({
       <div className="flex flex-1 flex-col gap-3 p-5">
         <h3 className="text-[1.0625rem] font-bold text-white">{name}</h3>
         <p className="flex-1 text-[0.875rem] leading-relaxed text-muted">{description}</p>
+        <div className="personalized-card-pricing" aria-label={priceOptions ? "Preços por opção" : `Preço: ${price ?? "sob consulta"}`}>
+          <span className="personalized-card-pricing-label">
+            {priceOptions ? "Preços por opção" : "Preço"}
+          </span>
+          {priceOptions?.length ? (
+            <ul>
+              {priceOptions.map((option) => (
+                <li key={option.label}>
+                  <span>{option.label}</span>
+                  <strong>{option.price}</strong>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <strong className={price ? "personalized-card-price" : "personalized-card-price personalized-card-price--quote"}>
+              {price ?? "Sob consulta"}
+            </strong>
+          )}
+        </div>
         <WhatsAppLink
           message={personalizadoMessage(singular)}
           size="sm"
