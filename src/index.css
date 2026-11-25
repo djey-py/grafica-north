@@ -1479,3 +1479,55 @@
     height: 1.75rem;
   }
 }
+
+.personalized-card-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  border: 1px solid rgba(32, 185, 242, 0.22);
+  border-radius: 0.95rem;
+  background: linear-gradient(135deg, rgba(22, 119, 255, 0.09), rgba(8, 15, 32, 0.7));
+  padding: 0.75rem 0.9rem;
+}
+
+.personalized-card-pricing-label {
+  color: #89a2c2;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.personalized-card-pricing ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.personalized-card-pricing li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.7rem;
+  color: #c0ccdf;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.personalized-card-pricing li strong,
+.personalized-card-price {
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.personalized-card-price--quote {
+  color: #c0ccdf;
+  font-size: 0.84rem;
+}

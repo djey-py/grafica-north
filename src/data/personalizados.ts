@@ -6,7 +6,10 @@ export interface PersonalizedProduct {
   singular: string;
   description: string;
   image: ImageKey | null;
+  imageAlt?: string;
   gradient: string;
+  price?: string;
+  priceOptions?: { label: string; price: string }[];
   featured?: boolean;
   keywords?: string[];
 }
@@ -57,6 +60,7 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
       "Porta-chaves personalizados em diferentes materiais e formatos — um brinde de elevada visibilidade para a sua marca.",
     image: "featuredKeychains",
     gradient: "from-[#0867E8] via-[#1677FF] to-[#20B9F2]",
+    price: "1.000 Kz",
     featured: true,
     keywords: ["porta-chaves", "chaveiro", "brinde", "acrílico", "metal", "couro"],
   },
@@ -67,7 +71,23 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     description: "T-shirts personalizadas para equipas, eventos, campanhas e uso promocional.",
     image: "workSampleTshirtsAsagropec",
     gradient: "from-[#0867E8] to-[#382080]",
-    keywords: ["t-shirt", "camisola", "vestuário", "roupa", "texto"],
+    priceOptions: [
+      { label: "Tecido pesado", price: "4.000 Kz" },
+      { label: "Tecido leve · sublimação", price: "3.000 Kz" },
+      { label: "Tecido leve · DTF", price: "3.500 Kz" },
+    ],
+    keywords: ["t-shirt", "camisola", "vestuário", "roupa", "texto", "sublimação", "DTF"],
+  },
+  {
+    id: "camisas",
+    name: "Camisas",
+    singular: "camisas",
+    description: "Camisas personalizadas para equipas, empresas e eventos.",
+    image: "workSampleEmbroideredShirts",
+    imageAlt: "Camisas brancas com o logótipo Inside Interiores bordado — fotografia de trabalho realizado pela Gráfica Noreth.",
+    gradient: "from-[#0E1730] to-[#1677FF]",
+    price: "10.000 Kz",
+    keywords: ["camisa", "uniforme", "vestuário", "trabalho"],
   },
   {
     id: "polos",
@@ -76,16 +96,24 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     description: "Polos personalizados com aplicação adequada a vestuário corporativo.",
     image: "workSamplePoloDreamhomeFront",
     gradient: "from-[#1677FF] to-[#20B9F2]",
-    keywords: ["polo", "vestuário", "corporativo", "bordado"],
+    priceOptions: [
+      { label: "Lacoste timbrada", price: "6.000 Kz" },
+      { label: "Lacoste bordada", price: "8.500 Kz" },
+    ],
+    keywords: ["polo", "Lacoste", "timbrada", "vestuário", "corporativo", "bordado"],
   },
   {
     id: "bones",
-    name: "Bonés",
-    singular: "bonés",
-    description: "Bonés personalizados para equipas, eventos e ação promocional.",
+    name: "Chapéus e bonés",
+    singular: "chapéus e bonés",
+    description: "Chapéus e bonés personalizados para equipas, eventos e ações promocionais.",
     image: "workSampleCapsAsagropecGroup",
     gradient: "from-[#0B1224] to-[#0867E8]",
-    keywords: ["boné", "capacete", "vestuário", "headwear"],
+    priceOptions: [
+      { label: "Timbrado", price: "3.000 Kz" },
+      { label: "Bordado", price: "6.500 Kz" },
+    ],
+    keywords: ["chapéu", "boné", "timbrado", "bordado", "capacete", "vestuário", "headwear"],
   },
   {
     id: "coletes-refletores",
@@ -94,7 +122,11 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     description: "Coletes refletores personalizados para equipas de trabalho e segurança.",
     image: "workSampleVestBgs",
     gradient: "from-[#20B9F2] to-[#0867E8]",
-    keywords: ["colete", "refletor", "segurança", "trabalho"],
+    priceOptions: [
+      { label: "Normal", price: "3.000 Kz" },
+      { label: "Com bolso", price: "4.500 Kz" },
+    ],
+    keywords: ["colete", "refletor", "normal", "com bolso", "segurança", "trabalho"],
   },
   {
     id: "coletes-multibolsos",
@@ -103,7 +135,11 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     description: "Coletes multibolsos personalizados para uso técnico e promocional.",
     image: "workSampleVestAngola",
     gradient: "from-[#382080] to-[#0867E8]",
-    keywords: ["colete", "multibolsos", "técnico", "trabalho"],
+    priceOptions: [
+      { label: "Bordado", price: "18.000 Kz" },
+      { label: "Timbrado", price: "16.500 Kz" },
+    ],
+    keywords: ["colete", "multibolsos", "timbrado", "bordado", "técnico", "trabalho"],
   },
   {
     id: "canecas-termicas",
@@ -158,6 +194,17 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     image: "catBadges",
     gradient: "from-[#1677FF] to-[#382080]",
     keywords: ["botton", "button", "pin", "insígnia"],
+  },
+  {
+    id: "sacolas-tnt",
+    name: "Sacolas TNT",
+    singular: "sacolas TNT",
+    description: "Sacolas TNT personalizadas para eventos, campanhas e divulgação da sua marca.",
+    image: "workSamplePrintedTotes",
+    imageAlt: "Sacolas brancas com impressão colorida — fotografia de trabalho realizado pela Gráfica Noreth.",
+    gradient: "from-[#0867E8] to-[#20B9F2]",
+    price: "1.500 Kz",
+    keywords: ["sacola", "TNT", "sacola TNT", "brinde", "evento"],
   },
   {
     id: "outros-brindes",

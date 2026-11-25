@@ -78,7 +78,7 @@ export default function Personalizados() {
                 aria-hidden="true"
                 className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"
               />
-              <figcaption className="img-tag">Imagem ilustrativa</figcaption>
+              <figcaption className="img-tag">Trabalho real da Gráfica Noreth</figcaption>
             </figure>
           </Reveal>
 
@@ -98,9 +98,12 @@ export default function Personalizados() {
               materiais e formatos, adequados a campanhas, eventos, ofertas institucionais e
               uso promocional.
             </p>
+            <div className="personalized-card-pricing mt-4 max-w-xs">
+              <span className="personalized-card-pricing-label">Preço</span>
+              <strong className="personalized-card-price">1.000 Kz</strong>
+            </div>
             <p className="mt-3 text-[0.875rem] text-muted">
-              Materiais, formatos, técnicas, quantidades e preços são confirmados com a
-              Gráfica Noreth de acordo com o seu pedido.
+              Materiais, formatos, técnicas e quantidades podem variar conforme o pedido.
             </p>
             <div className="mt-7">
               <WhatsAppLink message={MESSAGES.portaChaves}>
@@ -153,7 +156,7 @@ export default function Personalizados() {
             align="left"
             eyebrow="Catálogo de produtos"
             title={<span id="produtos-title">Produtos disponíveis para personalização</span>}
-            description="Escolha o produto e clique em “Quero personalizar este produto”. A mensagem é preparada automaticamente no WhatsApp."
+            description="Os preços confirmados aparecem nos cartões; os restantes estão sob consulta. Escolha o produto e clique em “Quero personalizar este produto” para pedir informações pelo WhatsApp."
           />
 
           <div className="relative mt-8 max-w-lg">
