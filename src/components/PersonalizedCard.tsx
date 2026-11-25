@@ -42,7 +42,7 @@ export default function PersonalizedCard({
         featured && "ring-1 ring-aqua/35",
       )}
     >
-      <div className="relative aspect-[5/4] overflow-hidden bg-panel">
+      <div className="personalized-card-image relative aspect-[4/5] overflow-hidden bg-panel">
         {image ? (
           <img
             src={IMAGES[image]}
@@ -56,7 +56,7 @@ export default function PersonalizedCard({
             decoding="async"
             width={1000}
             height={800}
-            className={`h-full w-full object-cover ${isRealWorkSample ? "" : "transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"}`}
+            className={`h-full w-full object-contain ${isRealWorkSample ? "" : "transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"}`}
           />
         ) : (
           <div

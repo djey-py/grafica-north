@@ -162,6 +162,13 @@ async function main() {
       if (!bagsCard?.querySelector('img[alt*="trabalho realizado pela Gráfica Noreth"]')) {
         throw new Error("O cartão de sacolas deve reutilizar a fotografia real do Swiper e identificá-la como trabalho realizado.");
       }
+      if (productCards.some((card) => {
+        const imageFrame = card.querySelector(".personalized-card-image");
+        const image = imageFrame?.querySelector("img");
+        return !imageFrame?.classList.contains("aspect-[4/5]") || (image && !image.className.includes("object-contain"));
+      })) {
+        throw new Error("As fotografias dos cartões devem aparecer na vertical sem cortar a imagem.");
+      }
       const expectedPrices = [
         "1.000 Kz", "4.000 Kz", "3.000 Kz", "3.500 Kz", "6.000 Kz", "8.500 Kz",
         "18.000 Kz", "16.500 Kz", "3.000 Kz", "4.500 Kz", "6.500 Kz", "10.000 Kz", "1.500 Kz",

@@ -10,7 +10,7 @@ import WhatsAppLink from "./WhatsAppLink";
 
 import capsImage from "../assets/images/hero/custom-caps.webp";
 import shirtsImage from "../assets/images/hero/embroidered-shirts.webp";
-import totesImage from "../assets/images/hero/printed-totes.webp";
+import totesImage from "../assets/images/hero/printed-totes-upright.webp";
 import schoolKeychainsImage from "../assets/images/hero/school-keychains.webp";
 import brandKeychainsImage from "../assets/images/hero/brand-keychains.webp";
 
