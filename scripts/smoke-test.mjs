@@ -158,9 +158,13 @@ async function main() {
       if (!shirtsCard?.querySelector('img[alt*="trabalho realizado pela Gráfica Noreth"]')) {
         throw new Error("O cartão de camisas deve reutilizar a fotografia real do Swiper e identificá-la como trabalho realizado.");
       }
+      const bagsCard = productCards.find((card) => card.querySelector("h3")?.textContent === "Sacolas TNT");
+      if (!bagsCard?.querySelector('img[alt*="trabalho realizado pela Gráfica Noreth"]')) {
+        throw new Error("O cartão de sacolas deve reutilizar a fotografia real do Swiper e identificá-la como trabalho realizado.");
+      }
       const expectedPrices = [
         "1.000 Kz", "4.000 Kz", "3.000 Kz", "3.500 Kz", "6.000 Kz", "8.500 Kz",
-        "18.000 Kz", "16.500 Kz", "3.000 Kz", "6.500 Kz", "10.000 Kz", "1.500 Kz",
+        "18.000 Kz", "16.500 Kz", "3.000 Kz", "4.500 Kz", "6.500 Kz", "10.000 Kz", "1.500 Kz",
       ];
       if (expectedPrices.some((price) => !personalizedPrices.includes(price))) {
         throw new Error("Falta um dos preços fornecidos para os produtos personalizados.");

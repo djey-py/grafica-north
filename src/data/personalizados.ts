@@ -122,7 +122,11 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     description: "Coletes refletores personalizados para equipas de trabalho e segurança.",
     image: "workSampleVestBgs",
     gradient: "from-[#20B9F2] to-[#0867E8]",
-    keywords: ["colete", "refletor", "segurança", "trabalho"],
+    priceOptions: [
+      { label: "Normal", price: "3.000 Kz" },
+      { label: "Com bolso", price: "4.500 Kz" },
+    ],
+    keywords: ["colete", "refletor", "normal", "com bolso", "segurança", "trabalho"],
   },
   {
     id: "coletes-multibolsos",
@@ -196,7 +200,8 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     name: "Sacolas TNT",
     singular: "sacolas TNT",
     description: "Sacolas TNT personalizadas para eventos, campanhas e divulgação da sua marca.",
-    image: null,
+    image: "workSamplePrintedTotes",
+    imageAlt: "Sacolas brancas com impressão colorida — fotografia de trabalho realizado pela Gráfica Noreth.",
     gradient: "from-[#0867E8] to-[#20B9F2]",
     price: "1.500 Kz",
     keywords: ["sacola", "TNT", "sacola TNT", "brinde", "evento"],
