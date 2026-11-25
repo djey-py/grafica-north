@@ -154,6 +154,10 @@ async function main() {
         throw new Error("Todos os cartões de produtos personalizados devem apresentar preço ou indicação de consulta.");
       }
       const personalizedPrices = productCards.map((card) => card.textContent ?? "").join(" ");
+      const shirtsCard = productCards.find((card) => card.querySelector("h3")?.textContent === "Camisas");
+      if (!shirtsCard?.querySelector('img[alt*="trabalho realizado pela Gráfica Noreth"]')) {
+        throw new Error("O cartão de camisas deve reutilizar a fotografia real do Swiper e identificá-la como trabalho realizado.");
+      }
       const expectedPrices = [
         "1.000 Kz", "4.000 Kz", "3.000 Kz", "3.500 Kz", "6.000 Kz", "8.500 Kz",
         "18.000 Kz", "16.500 Kz", "3.000 Kz", "6.500 Kz", "10.000 Kz", "1.500 Kz",

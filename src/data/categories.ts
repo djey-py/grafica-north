@@ -16,6 +16,7 @@ import workSamplePoloDreamhomeFront from "../assets/images/work-samples/polo-dre
 import workSamplePoloGeoverde from "../assets/images/work-samples/polo-geoverde.webp";
 import workSamplePoloInside from "../assets/images/work-samples/polo-inside-interiores.webp";
 import workSampleTshirtsAsagropec from "../assets/images/work-samples/tshirts-asagropec.webp";
+import workSampleEmbroideredShirts from "../assets/images/hero/embroidered-shirts.webp";
 import workSampleVestAngola from "../assets/images/work-samples/vest-angola.webp";
 import workSampleVestBgs from "../assets/images/work-samples/vest-reflective-bgs.webp";
 import workSampleVestMultibolsos from "../assets/images/work-samples/vest-multibolsos-angola.webp";
@@ -67,6 +68,7 @@ export const IMAGES = {
   workSamplePoloGeoverde,
   workSamplePoloInside,
   workSampleTshirtsAsagropec,
+  workSampleEmbroideredShirts,
   workSampleVestAngola,
   workSampleVestBgs,
   workSampleVestMultibolsos,

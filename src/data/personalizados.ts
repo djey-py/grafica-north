@@ -6,6 +6,7 @@ export interface PersonalizedProduct {
   singular: string;
   description: string;
   image: ImageKey | null;
+  imageAlt?: string;
   gradient: string;
   price?: string;
   priceOptions?: { label: string; price: string }[];
@@ -82,7 +83,8 @@ export const PERSONALIZED_PRODUCTS: PersonalizedProduct[] = [
     name: "Camisas",
     singular: "camisas",
     description: "Camisas personalizadas para equipas, empresas e eventos.",
-    image: null,
+    image: "workSampleEmbroideredShirts",
+    imageAlt: "Camisas brancas com o logótipo Inside Interiores bordado — fotografia de trabalho realizado pela Gráfica Noreth.",
     gradient: "from-[#0E1730] to-[#1677FF]",
     price: "10.000 Kz",
     keywords: ["camisa", "uniforme", "vestuário", "trabalho"],

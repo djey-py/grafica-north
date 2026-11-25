@@ -9,6 +9,7 @@ interface PersonalizedCardProps {
   singular: string;
   description: string;
   image: ImageKey | null;
+  imageAlt?: string;
   gradient: string;
   price?: string;
   priceOptions?: { label: string; price: string }[];
@@ -25,6 +26,7 @@ export default function PersonalizedCard({
   singular,
   description,
   image,
+  imageAlt,
   gradient,
   price,
   priceOptions,
@@ -45,9 +47,10 @@ export default function PersonalizedCard({
           <img
             src={IMAGES[image]}
             alt={
-              isRealWorkSample
+              imageAlt ??
+              (isRealWorkSample
                 ? `${name} personalizados — fotografia de trabalho realizado pela Gráfica Noreth`
-                : `${name} personalizados — fotografia ilustrativa`
+                : `${name} personalizados — fotografia ilustrativa`)
             }
             loading="lazy"
             decoding="async"
